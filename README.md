@@ -10,6 +10,10 @@ The documentation of the original version of FC4SC provided by Amiq (https://git
 The User's guide provided here fits to the current version of FC4SC as provided by Accellera.
 It includes a short tutorial and an almost complete description of the API provided by FC4SC.
 
+### Implementation
+
+The implmentation of available from Accellera (https://github.com/accellera-official/fc4sc) contains some bugs that are fixed with the patches provided here.
+
 ### HTML-GUI
 
 The FC4SC version provided by Amiq contains a HTML+JS-based tool to show UCIS-XML-files in a browser.
@@ -20,3 +24,10 @@ A patch of the Amiq version is provided here that works with XML files produced 
 
 For the same reasons as for the HTML-GUI the Python-bases tool for merging two or more UCIS-XML-files does not work.
 A patch of the Amiq version is provided here that works with XML files produced by the Accellera version.
+
+### Apply patches
+
+To apply the patches provied here this repository should be cloned.
+The directory fc4sc contains a skipt patch.sh.
+Please adapt the path of the local copy of the Accellera version of FC4SC and the path to the directory that contains a local copy of this directory.
+Running patch.sh will apply the patches to the local copy of the FC4SC directory.
