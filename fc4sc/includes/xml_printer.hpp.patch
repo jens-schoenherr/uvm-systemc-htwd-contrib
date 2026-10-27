@@ -1,0 +1,148 @@
+--- 
++++ 
+@@ -77,11 +77,11 @@
+     std::tm* time_now = std::localtime(&cur_time);
+     stream << " writtenTime=\""
+            << time_now->tm_year+1900 << '-'
+-	   << (time_now->tm_mon + 1)/10 << (time_now->tm_mon + 1)%10 << '-'
+-	   << time_now->tm_mday/10 << time_now->tm_mday%10 << "T"
+-	   << time_now->tm_hour/10 << time_now->tm_hour%10 << ":"
+-	   << time_now->tm_min/10 << time_now->tm_min%10 << ":"
+-	   << time_now->tm_sec/10 << time_now->tm_sec%10
++           << (time_now->tm_mon + 1)/10 << (time_now->tm_mon + 1)%10 << '-'
++           << time_now->tm_mday/10 << time_now->tm_mday%10 << "T"
++           << time_now->tm_hour/10 << time_now->tm_hour%10 << ":"
++           << time_now->tm_min/10 << time_now->tm_min%10 << ":"
++           << time_now->tm_sec/10 << time_now->tm_sec%10
+            << "\"";
+     stream << ">\n";
+ 
+@@ -89,8 +89,8 @@
+     {
+       stream << "<sourceFiles ";
+       stream << " fileName=\""
+-	     << fname_it.second
+-	     << "\"";
++           << fname_it.second
++           << "\"";
+       stream << " id=\""
+              << fname_it.first
+              << "\" ";
+@@ -143,11 +143,11 @@
+     */
+     stream << "date=\""
+            << time_now->tm_year+1900 << '-'
+-	   << (time_now->tm_mon + 1)/10 << (time_now->tm_mon + 1)%10 << '-'
+-	   << time_now->tm_mday/10 << time_now->tm_mday%10 << "T"
+-	   << time_now->tm_hour/10 << time_now->tm_hour%10 << ":"
+-	   << time_now->tm_min/10 << time_now->tm_min%10 << ":"
+-	   << time_now->tm_sec/10 << time_now->tm_sec%10
++           << (time_now->tm_mon + 1)/10 << (time_now->tm_mon + 1)%10 << '-'
++           << time_now->tm_mday/10 << time_now->tm_mday%10 << "T"
++           << time_now->tm_hour/10 << time_now->tm_hour%10 << ":"
++           << time_now->tm_min/10 << time_now->tm_min%10 << ":"
++           << time_now->tm_sec/10 << time_now->tm_sec%10
+            << "\" \n";
+       
+     stream << "userName=\""
+@@ -204,7 +204,7 @@
+            << "\" \n";
+     stream << "moduleName=\""
+            << base.type_data->type_name
+-    	   << "\" \n";
++           << "\" \n";
+     stream << "key=\"" << get_unique_key() << "\" \n";
+     stream << "instanceId=\"" << base.instance_id << "\" \n";
+     if(base.parent_scp != nullptr) {
+@@ -228,14 +228,13 @@
+       {
+         if(type_it.second[i]->enable) {
+           instance = true;
+-	  break;
++          break;
+         }
+       }
+ 
+       if(instance) {
+         stream << "<covergroupCoverage ";
+-        stream << "weight=\"" << type_it.second.front()->type_data->type_option.weight << "\" ";
+-        stream << ">\n";
++        stream << "weight=\"" << type_it.second.front()->type_data->type_option.weight << "\" " << ">\n";
+       
+ 
+       // Print each instance
+@@ -270,13 +269,13 @@
+       {
+         if(!type_it.second[i]->enable) {
+           stream << "<userAttr ";
+-  	  stream << "key=\"" << type_it.second[i]->type_data->type_name << "\" \n";
++          stream << "key=\"" << type_it.second[i]->type_data->type_name << "\" \n";
+           stream << "type=\"str\"\n";
+-	  stream << "len=\"" << type_it.second[i]->type_data->type_name.size() << "\"\n";
+-	  stream << ">\n";
+-	  stream << type_it.second[i]->type_data->type_name;
+-	  stream << "</userAttr>\n";
+-	}
++          stream << "len=\"" << type_it.second[i]->type_data->type_name.size() << "\"\n";
++          stream << ">\n";
++          stream << type_it.second[i]->type_data->type_name;
++          stream << "</userAttr>\n";
++        }
+       }
+     }
+ 
+@@ -403,7 +402,7 @@
+              << "\" \n";
+       stream << "> \n";
+ 
+-      for (unsigned int i = 0; i < base.get_cross_bins().size(); i++) 
++      for (unsigned int i = 0; i < base.cross_cvps.size(); i++)
+        stream << "<index>" << 0 << "</index>\n";
+ 
+       stream << "<contents \n";
+@@ -451,13 +450,13 @@
+     {
+       case fc4sc::bin_t::default_:
+         ucis_bin_type = "default";
+-	break;
++        break;
+       case fc4sc::bin_t::illegal_:
+         ucis_bin_type = "illegal";
+-	break;
++        break;
+       case fc4sc::bin_t::ignore_:
+         ucis_bin_type = "ignore";
+-	break;
++        break;
+     }
+ 
+     stream << "type=\""
+@@ -473,8 +472,8 @@
+     {
+       stream << "<range \n"
+              << "from=\"" << bin_intervals[i].first << "\" \n"
+-   	     << "to =\"" << bin_intervals[i].second << "\"\n"
+-    	     << ">\n";
++             << "to =\"" << bin_intervals[i].second << "\"\n"
++             << ">\n";
+ 
+       // Print hits for each range
+       stream << "<contents "
+@@ -495,7 +494,7 @@
+   {
+     if (file_name.empty()) {
+       std::cerr << "FC4SC " << __FUNCTION__ << ": Error! Function was passed "
+-	  "empty string as the file name\n";
++        "empty string as the file name\n";
+       std::cerr << "COVERAGE DB WAS NOT BE SAVED!" << std::endl;
+       return;
+     }
+@@ -522,7 +521,7 @@
+         printer.print_data_xml(cntxt);
+         break;
+       default :
+-	break;
++        break;
+     }
+   }
+ 

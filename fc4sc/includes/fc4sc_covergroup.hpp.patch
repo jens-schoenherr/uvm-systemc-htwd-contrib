@@ -1,0 +1,11 @@
+--- 
++++ 
+@@ -192,7 +192,7 @@
+           std::cerr << e.what() << std::endl;
+ #ifndef FC4SC_NO_THROW // By default the simulation will stop
+           std::cerr << "Stopping simulation\n";
+-	  throw(e);
++          throw(e);
+ #endif
+         }
+       }

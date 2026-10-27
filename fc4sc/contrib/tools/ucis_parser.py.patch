@@ -1,0 +1,27 @@
+--- 
++++ 
+@@ -48,11 +48,12 @@
+ class UCIS_DB_Parser:
+     def __init__(self):
+         self.ucis_ns = 'ucis'
+-        self.ucis_ns_schema = 'http://www.w3.org/2001/XMLSchema-instance'
++        self.ucis_ns_schema = 'UCIS'
+         # namespace map
+         self.ns_map = {self.ucis_ns : self.ucis_ns_schema}
+         # register the UCIS namespace
+         ET.register_namespace(self.ucis_ns, self.ucis_ns_schema)
++        ET.register_namespace("UCIS", "UCIS")
+         self.ucis_db = {
+             "instanceCoverages"  : '{0}:instanceCoverages' .format(self.ucis_ns),
+             "covergroupCoverage" : '{0}:covergroupCoverage'.format(self.ucis_ns),
+@@ -88,4 +89,8 @@
+     # searches and returns the first match of the XPath query in the mergeDBtree
+     def find_merge_element_by_query(self, xpath_query):
+         return self.mergeDBtree.find(xpath_query, self.ns_map)
+-    
+\ No newline at end of file
++
++    # searches and returns all matches of the XPath query in the mergeDBtree
++    def find_merge_all_elements_by_query(self, xpath_query):
++        return self.mergeDBtree.findall(xpath_query, self.ns_map)
++

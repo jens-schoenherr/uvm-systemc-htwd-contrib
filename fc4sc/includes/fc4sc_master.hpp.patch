@@ -1,0 +1,217 @@
+--- 
++++ 
+@@ -18,7 +18,7 @@
+ ******************************************************************************/
+ /******************************************************************************
+    Original Authors: Teodor Vasilache and Dragos Dospinescu,
+-                     AMIQ Consulting s.r.l. (contributors@@amiq.com)
++                     AMIQ Consulting s.r.l. (contributors@amiq.com)
+ 
+                Date: 2018-Feb-20
+ ******************************************************************************/
+@@ -53,12 +53,12 @@
+ class global
+ {
+ 
+-class default_scope_data_model : public scp_base_data_model 
+-{ 
++class default_scope_data_model : public scp_base_data_model
++{
+ public:
+ 
+   int anonymous_count = 0;
+-  
++
+   void add_cvg_data(cvg_base_data_model* cvg_data,std::string cvg_type_name, std::string scp_type_name, unsigned int cvg_file_id, uint32_t cvg_line)
+   {
+     cvg_insts[cvg_data->name] = cvg_data;
+@@ -75,12 +75,12 @@
+       type_data->type_name = scp_type_name;
+       fc4sc::global::get_scopes_data(this->cntxt)[scp_type_name] = type_data;
+     }
+-    
++
+     if(type_data->cvg_type_table.count(cvg_type_name) > 0)
+     {
+       type_data->cvg_type_table[cvg_type_name]->cvg_insts.push_back(cvg_data);
+     }
+-    else 
++    else
+     {
+       cvg_metadata* tmp = new cvg_metadata;
+       tmp->type_name = cvg_type_name;
+@@ -129,12 +129,12 @@
+ 
+   /*! Destructor */
+   virtual ~default_scope() { }
+- 
++
+   scp_base_data_model* get_scp_data()
+   {
+     return scp_data;
+   }
+-  
++
+   std::string& name()
+   {
+     return scp_data->name;
+@@ -222,9 +222,9 @@
+     unsigned int internal_get_file_id(const std::string& file_name)
+     {
+       if (file_name_to_id.count(file_name) == 0) {
+-	unsigned int id = gkey++;
+-	file_id_to_name[id] = file_name;
+-	file_name_to_id[file_name] = id;
++        unsigned int id = gkey++;
++        file_id_to_name[id] = file_name;
++        file_name_to_id[file_name] = id;
+       }
+       return file_name_to_id[file_name];
+     }
+@@ -238,12 +238,12 @@
+       if (scp_data->name.empty())
+       {
+         std::size_t found = scp_type_name.find_last_of(':');
+-	if(found == std::string::npos) {
+-	  scp_data->name = scp_type_name + "_";
+-	}
+-	else {
++        if(found == std::string::npos) {
++          scp_data->name = scp_type_name + "_";
++        }
++        else {
+           scp_data->name = scp_type_name.substr(found+1);
+-	}
++        }
+       }
+       top_scps.push_back(scp_data);
+       if(scps_data.count(scp_type_name) > 0)
+@@ -253,27 +253,27 @@
+       else
+       {
+         scp_metadata* tmp = new scp_metadata;
+-	tmp->type_name = scp_type_name;
+-	tmp->file_id = scp_file_id;
+-	tmp->line = scp_line;
+-	tmp->scp_insts.push_back(scp_data);
+-	scps_data[scp_type_name] = tmp;
++        tmp->type_name = scp_type_name;
++        tmp->file_id = scp_file_id;
++        tmp->line = scp_line;
++        tmp->scp_insts.push_back(scp_data);
++        scps_data[scp_type_name] = tmp;
+       }
+       scp_data->type_data = scps_data[scp_type_name];
+     }
+ 
+    /*!
+     * \brief gets scope data to introspect the coverage data
+-    */ 
+-    std::unordered_map<std::string,scp_metadata*>& internal_get_scopes_data() 
++    */
++    std::unordered_map<std::string,scp_metadata*>& internal_get_scopes_data()
+     {
+       return scps_data;
+     }
+ 
+    /*!
+     * \brief gets top scopes to introspect the coverage data
+-    */ 
+-    std::vector<scp_base_data_model*>& internal_get_top_scopes() 
++    */
++    std::vector<scp_base_data_model*>& internal_get_top_scopes()
+     {
+       return top_scps;
+     }
+@@ -301,7 +301,8 @@
+ 
+    /*!
+     * \brief Computes the coverage percentage across all instances of a given type
+-    * \param type Unmangled type name
++    * \param scp_type type name of scope
++    * \param type Unmangled type name of covergroup
+     * \returns Double between 0 and 100
+     */
+     double internal_get_coverage(const std::string &scp_type, const std::string &type)
+@@ -312,7 +313,8 @@
+ 
+     /*!
+      * \brief Computes the coverage percentage across all instances of a given type
+-     * \param type Unmangled type name
++     * \param scp_type type name of scope
++     * \param type Unmangled type name of covergroup
+      * \param hit_bins Total number of hit bins in instances
+      * \param total_bins Total number of bins in instances
+      * \returns Double between 0 and 100
+@@ -328,7 +330,7 @@
+     {
+       return scps_data[scp_type]->cvg_type_table[type]->type_option;
+     }
+-    
++
+     bool empty() const {
+       return scps_data.empty();
+     }
+@@ -377,7 +379,7 @@
+ 
+       if (weights == 0 || base.cvps.size() == 0 || cvg_res == 0) {
+         cvg_res = (base.option.weight == 0) ? 100 : 0;
+-	return;
++        return;
+       }
+ 
+       double real = cvg_res / weights;
+@@ -413,7 +415,7 @@
+   void visit(cross_base_data_model& base)
+   {
+     cvp_weight = base.option.weight;
+-    
++
+     int covered = 0;
+     int total = 1;
+ 
+@@ -434,7 +436,7 @@
+       if (it.second >= base.option.at_least)
+         covered++;
+     }
+-    
++
+     this->bin_covered += covered;
+ 
+     double real = 100.0 * covered / total;
+@@ -522,7 +524,7 @@
+   static unsigned int get_file_id(std::string file_name,fc4sc::global* cvg_cntxt = fc4sc::global::getter())
+   {
+     return cvg_cntxt->internal_get_file_id(file_name);
+-  } 
++  }
+ 
+   /*!
+    * \brief get file ID to file name table
+@@ -564,7 +566,7 @@
+ 
+   /*!
+   * \brief Computes the coverage percentage across all instances of all types
+-  * \returns Double between 0 and 100
++  * \returns Double between 0.0 and 100.0
+   */
+   static double get_coverage(fc4sc::global* cvg_cntxt = fc4sc::global::getter())
+   {
+@@ -574,7 +576,7 @@
+   /*!
+    * \brief Computes the coverage percentage across all instances of a given type
+    * \param type Unmangled type name
+-   * \returns Double between 0 and 100
++   * \returns Double between 0.0 and 100.0
+    */
+   static double get_coverage(const std::string &scp_type, const std::string &type, fc4sc::global* cvg_cntxt = fc4sc::global::getter())
+   {
+@@ -586,7 +588,7 @@
+    * \param type Unmangled type name
+    * \param hit_bins Total number of hit bins across instances of same type
+    * \param total_bins Total number of bins across instances of same type
+-   * \returns Double between 0 and 100
++   * \returns Double between 0.0 and 100.0
+    */
+   static double get_coverage(const std::string &scp_type, const std::string &type, int &hit_bins, int &total_bins, fc4sc::global* cvg_cntxt = fc4sc::global::getter())
+   {

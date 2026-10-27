@@ -1,0 +1,110 @@
+--- 
++++ 
+@@ -249,22 +249,67 @@
+   void remove_interval_overlap()
+   {
+     sort(bin_data->intervals.begin(),bin_data->intervals.end(),IntervalComp());
+-    auto intrv_end = bin_data->intervals.begin();
+-    for (auto intrv = std::next(intrv_end); intrv != bin_data->intervals.end(); intrv++)
++
++    std::vector<interval_t<T>> new_intervals;
++
++    typename std::vector<interval_t<T>>::iterator it = bin_data->intervals.begin();
++
++    while (it != bin_data->intervals.end())
+     {
+-      if(intrv_end->second >= intrv->first) {
+-        intrv_end->second = intrv->second;
+-	std::cerr << "Warning: Merging overlapping intervals "
+-	          << "("  << intrv_end->first << "," << intrv_end->second << ")"
+-		  << " and "
+-		  << "(" << intrv->first << "," << intrv->second << ")"
+-	          << " within bin \"" << this->bin_data->name << "\"\n";
+-      }
+-      else {
+-        *(++intrv_end) = *intrv;
++      // i becomes the next interval
++      interval_t<T> i = *it;
++      it++;
++      // try to enlarge i by next intervals of bin_data->intervals
++      while (it != bin_data->intervals.end())
++      {
++        interval_t<T> b = *it;
++        interval_t<T> j = i; // save i for printing
++        if (b.first != i.first) // bin_data->intervals is sorted by first i.e. b.first > i.first
++        {
++          // check if i and b overlap
++          if (b.first > i.second) // b starts after i -> no merge
++          {
++            break; // merging of i finished since bin_data->intervals is sorted by first
++          }
++          else // b starts at or before i ends
++          {
++            // i.second becomes the larger upper bound of i and b
++            // i.first is the smaller lower bound of i and b
++            if (b.second > i.second)
++            {
++              i.second = b.second; // i becomes union of i and b,
++            }
++            // else: i includes b
++          }
++        }
++        else if (b.second > i.second)
++        {
++          // b includes i
++          i.second = b.second;
++        }
++        // else: i includes b because b.second <= i.second
++        it++; // next b
++#if __cplusplus >= 201703L
++        if constexpr ((std::is_same_v<T, unsigned char>) || (std::is_same_v<T, signed char>))
++        {
++          std::cerr << "Merging within bin \"" << this->bin_data->name << "\""
++                    <<            " [" << int(b.first) << ", " << int(b.second) << "]"
++                    <<        " and [" << int(j.first) << ", " << int(j.second) << "]"
++                    << " leading to [" << int(i.first) << ", " << int(i.second) << "]" << std::endl;
++        }
++        else
++#endif
++        { // in older versions of C++ chars are printed as characters not with theire number
++          std::cerr << "Merging within bin \"" << this->bin_data->name << "\""
++                    <<            " [" << b.first << ", " << b.second << "]"
++                    <<        " and [" << j.first << ", " << j.second << "]"
++                    << " leading to [" << i.first << ", " << i.second << "]" << std::endl;
++        }
+       }
++      new_intervals.push_back(i);
+     }
+-    bin_data->intervals.erase(++intrv_end,bin_data->intervals.end());
++    bin_data->intervals = new_intervals;
++    bin_data->interval_hits.resize(bin_data->intervals.size());
+   }
+ 
+ public:
+@@ -395,7 +440,7 @@
+   static_assert(std::is_integral<T>::value, "Type must be integral!");
+   friend class coverpoint<T>;
+ protected:
+-  
++
+   illegal_bin() = delete;
+ 
+ public:
+@@ -553,7 +598,7 @@
+       for (size_t i = 0; i < this->bin_data->intervals.size(); ++i) {
+         ss << this->bin_data->name << "[" << i << "]";
+         //cvp.bins.push_back(bin<T>(ss.str(), this->bin_data->intervals[i]));
+-	bin<T>(ss.str(), this->bin_data->intervals[i]).add_to_cvp(cvp);
++        bin<T>(ss.str(), this->bin_data->intervals[i]).add_to_cvp(cvp);
+         ss.str(std::string()); // clear the stringstream
+       }
+     }
+@@ -568,7 +613,7 @@
+         // bin containing the whole interval to the coverpoint. We can simply
+         // use this object since it already matches the bin that we need!
+         //cvp.bins.push_back(*this);
+-	this->bin<T>::add_to_cvp(cvp);
++        this->bin<T>::add_to_cvp(cvp);
+       }
+       else {
+         std::stringstream ss;

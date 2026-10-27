@@ -1,0 +1,177 @@
+--- 
++++ 
+@@ -64,7 +64,7 @@
+                 <td style="border: none !important">
+                     <label class="switch">
+                         <input
+-                            id="show_empty"
++                            id="show_partial"
+                             type="checkbox"
+                             onclick="button_change(1)"
+                         />
+@@ -79,7 +79,7 @@
+                 <td style="border: none !important">
+                     <label class="switch">
+                         <input
+-                            id="show_partial"
++                            id="show_empty"
+                             type="checkbox"
+                             onclick="button_change(2)"
+                         />
+@@ -106,17 +106,25 @@
+ <script type="text/javascript">
+     function takeAction(node) {
+         switch (node.nodeName) {
+-            case "ucis:coverpointBin": {
++            case "ucis:coverpointBin":
++            case "UCIS:coverpointBin":
++            case "coverpointBin": {
+                 if (node.getAttribute("type") !== "ignore") {
+                     global_bin_tree.push(new Bin(node));
+                 }
+                 return SizeEnum.RETURN;
+             }
+-            case "ucis:crossBin": {
+-                cross_bins.push(new CrossBin(node));
++            case "ucis:crossBin":
++            case "UCIS:crossBin":
++            case "crossBin": {
++                if (node.getAttribute("type") !== "ignore") {
++                    cross_bins.push(new CrossBin(node));
++                }
+                 return SizeEnum.RETURN;
+             }
+-            case "ucis:cgInstance": {
++            case "ucis:cgInstance":
++            case "UCIS:cgInstance":
++            case "cgInstance": {
+                 return SizeEnum.DEEPER;
+             }
+             default: {
+@@ -144,19 +152,25 @@
+ 
+     function takeStartAction(node) {
+         switch (node.nodeName) {
+-            case "ucis:cgInstance": {
++            case "ucis:cgInstance":
++            case "UCIS:cgInstance":
++            case "cgInstance": {
+                 cg_inst_lines = 0;
+                 cvp_procs = [];
+                 cvp_weights = [];
+ 
+                 break;
+             }
+-            case "ucis:cross": {
+-                cg_inst_lines += 3;
++            case "ucis:cross":
++            case "UCIS:cross":
++            case "cross": {
++                cg_inst_lines += 2;
+                 break;
+             }
+-            case "ucis:coverpoint": {
+-                cg_inst_lines += 2;
++            case "ucis:coverpoint":
++            case "UCIS:coverpoint":
++            case "coverpoint": {
++                cg_inst_lines += 1;
+                 break;
+             }
+             default:
+@@ -166,7 +180,9 @@
+ 
+     function takeEndAction(node, where) {
+         switch (node.nodeName) {
+-            case "ucis:cgInstance": {
++            case "ucis:cgInstance":
++            case "UCIS:cgInstance":
++            case "cgInstance": {
+                 global_cvg_tree.push(
+                     new Cg(
+                         cvp_procs,
+@@ -180,10 +196,13 @@
+                 global_cvp_tree = [];
+                 global_bin_tree = [];
+                 cross_bins = [];
++                cvp_map = new Map();
+ 
+                 break;
+             }
+-            case "ucis:cross": {
++            case "ucis:cross":
++            case "UCIS:cross":
++            case "cross": {
+                 var cross = new Cross(node, cross_bins);
+ 
+                 cg_inst_lines += cross_bins.length;
+@@ -197,23 +216,29 @@
+ 
+                 break;
+             }
+-            case "ucis:coverpoint": {
++            case "ucis:coverpoint":
++            case "UCIS:coverpoint":
++            case "coverpoint": {
+                 var cvp = new Coverpoint(
+                     node,
+-                    pass_bin,
+-                    fail_bin,
++                    pass_bins,
++                    fail_bins,
++                    pass_ranges,
++                    fail_ranges,
+                     global_bin_tree
+                 );
+ 
+                 cvp_procs.push(cvp.cvp_procent);
+                 cvp_weights.push(cvp.cvp_weight);
+-                cg_inst_lines += pass_bin + fail_bin;
++                cg_inst_lines += pass_ranges + fail_ranges;
+ 
+                 global_cvp_tree.push(cvp);
+ 
+                 global_bin_tree = [];
+-                pass_bin = 0;
+-                fail_bin = 0;
++                pass_bins = 0;
++                fail_bins = 0;
++                pass_ranges = 0;
++                fail_ranges = 0;
+             }
+             default:
+                 break;
+@@ -246,7 +271,7 @@
+             global_buttons[i].checked = true;
+         }
+         global_cvg_type = []; // clear pervious data
+-        var cgTypeElement = xmlFile.getElementsByTagName("ucis:instanceCoverages");
++        var cgTypeElement = xmlFile.getElementsByTagNameNS("UCIS", "instanceCoverages");
+ 
+         for (var it = 0; it < cgTypeElement.length; ++it) {
+             var cgType = cgTypeElement[it];
+@@ -318,8 +343,11 @@
+ <script type="text/javascript">
+     var cross_bins = [];
+ 
+-    var pass_bin = 0;
+-    var fail_bin = 0;
++    var cvp_map = new Map();
++    var pass_bins = 0;
++    var fail_bins = 0;
++    var pass_ranges = 0;
++    var fail_ranges = 0;
+     var cvp_procent = 0;
+     var cvp_bin_count = 0;
+ 
+@@ -346,8 +374,8 @@
+ 
+     var global_buttons = [
+         document.getElementById("show_full"),
+-        document.getElementById("show_empty"),
+-        document.getElementById("show_partial")
++        document.getElementById("show_partial"),
++        document.getElementById("show_empty")
+     ];
+ 
+     function readSingleFile(arg) {

@@ -1,0 +1,11 @@
+--- 
++++ 
+@@ -67,7 +67,7 @@
+   }
+ };
+ 
+-}	// namespace fc4sc
++} // namespace fc4sc
+ 
+ #endif
+ 

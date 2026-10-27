@@ -1,0 +1,16 @@
+--- 
++++ 
+@@ -31,6 +31,13 @@
+     this.cvg_proc += cvp_procs[i] * cvp_weights[i];
+     this.w_sum += Number(cvp_weights[i]);
+   }
++  if (cvp_procs.length == 0) {
++    // If all defined coverpoints in this group are 100% then the overall coverage is 100%.
++    // If there are no coverpoints then "all defined coverpoints" are covered.
++    // However, inside fc4sc this case counts as "0%"
++    this.cvg_proc = 0; // 100;
++    this.w_sum = 1;
++  }
+ 
+   this.cvg_proc = this.cvg_proc / this.w_sum;
+   this.cvg_proc = this.cvg_proc.toFixed(2);

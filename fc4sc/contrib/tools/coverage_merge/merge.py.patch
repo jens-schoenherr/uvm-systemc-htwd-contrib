@@ -1,0 +1,186 @@
+--- 
++++ 
+@@ -223,35 +223,43 @@
+     def merge_bin_hits(self, bin, binMergeElement, parent_query):
+         """ Sum the bin ranges' hit counts """
+         # merge hits for bins which are present in both the parsed DB and mergeDBtree
++        totalBinHits = 0
+         for range in self.findall_ucis_children(bin, "range"):
+             contents = self.find_ucis_element(range, "contents")
+             rangeHitCount = int(contents.get('coverageCount'))
+             xpath_query = parent_query + "/" + self.format_et_query("range")
+-            searchElement = self.find_merge_element_by_query(xpath_query)
+-            
+-            if searchElement is None:
+-                raise ValueError("Range not found! Bin contents differ between mergeDBtree and parsed XML!")
+-            
+-            sameFrom = searchElement.get('from') == range.get('from')
+-            sameTo = searchElement.get('to') == range.get('to')
+-            
+-            if not (sameFrom and sameTo):
++            searchElements = self.find_merge_all_elements_by_query(xpath_query)
++
++            if searchElements is None:
++                raise ValueError("No range found! Bin contents differ between mergeDBtree and parsed XML!")
++
++            found_suitable = False;
++            for searchElement in searchElements:
++
++                sameFrom = searchElement.get('from') == range.get('from')
++                sameTo = searchElement.get('to') == range.get('to')
++
++                if not (sameFrom and sameTo):
++                    continue;
++
++                found_suitable = True;
++                mergeContentsElement = self.find_ucis_element(searchElement, 'contents')
++                parsedContentsElement = self.find_ucis_element(range, 'contents')
++                totalRangeHits = int(mergeContentsElement.get('coverageCount'))
++                parsedRangeHHits = int(parsedContentsElement.get('coverageCount'))
++                totalRangeHits += parsedRangeHHits
++                totalBinHits += totalRangeHits
++
++                mergeContentsElement.set('coverageCount', str(totalRangeHits))
++
++                break;
++
++            if not (found_suitable):
+                 raise ValueError("Range limits differ between mergeDBtree and parsed XML!")
+-            
+-            mergeContentsElement = self.find_ucis_element(searchElement, 'contents')
+-            parsedContentsElement = self.find_ucis_element(range, 'contents')
+-            totalhits = int(mergeContentsElement.get('coverageCount'))
+-            parsedHits = int(parsedContentsElement.get('coverageCount'))
+-            totalhits += parsedHits
+-            
+-            # NOTE: alias attribute is set in the coverpointBin element because the
+-            # javascript gui application uses this field for showing the number of hits! 
+-            binMergeElement.set('alias', str(totalhits))
+-            mergeContentsElement.set('coverageCount', str(totalhits))
+-    
++
+         print ("\t\t\t[bin:{1}] {0} -> {2}".format(
+-            bin.get('name'), bin.get('type'), totalhits))    
+-        
++            bin.get('name'), bin.get('type'), totalBinHits))
++
+     def parse_crosses(self, cgInstance, parent_query):
+         for cross in self.findall_ucis_children(cgInstance, "cross"):
+             crossNameAttrib = 'name'
+@@ -279,6 +287,12 @@
+             # then, remove all the the crossBin elements from the cross
+             # then, create new crossBins elements matching the information stored in the map!
+             for crossBin in self.findall_ucis_children(mergeCrossElement, 'crossBin'):
++                # remove crossBin
++                mergeCrossElement.remove(crossBin)
++
++                binType = crossBin.get('type')
++                if (binType == 'ignore') or (binType == 'invalid'):
++                    continue;
+                 binIndexes = []
+                 for index in self.findall_ucis_children(crossBin, 'index'):
+                     binIndexes.append(int(index.text))
+@@ -291,10 +305,12 @@
+                 
+                 tupleIndexes = tuple(binIndexes)
+                 mergeMap[tupleIndexes] = hitCount
+-                # remove crossBin
+-                mergeCrossElement.remove(crossBin)
++
+             
+             for crossBin in self.findall_ucis_children(cross, 'crossBin'):
++                binType = crossBin.get('type')
++                if (binType == 'ignore') or (binType == 'invalid'):
++                    continue;
+                 binIndexes = []
+                 for index in self.findall_ucis_children(crossBin ,'index'):
+                     binIndexes.append(int(index.text))
+@@ -308,39 +324,53 @@
+                 else:
+                     mergeMap[tupleIndexes] = hitCount
+             
+-            crossBinString = """<{0}:crossBin name="" key="0" type="default" xmlns:{0}="{1}">\n"""
+-            for _ in range(numCvps):
+-                crossBinString += "<{0}:index>0</{0}:index>\n"
+-                
+-            crossBinString += """<{0}:contents coverageCount="0"></{0}:contents>\n"""
+-            crossBinString += "</{0}:crossBin>\n"
+-            crossBinString = crossBinString.format(self.ucis_ns, self.ns_map[self.ucis_ns])
+-                 
+-            # update crossBins element and append it to the mergeCrossElement
+-            for indexesTuple in mergeMap:
++            mergeMap = dict(sorted(mergeMap.items()))
++
++            if not mergeMap: # empty mergeMap: create dummy entry
++                crossBinString = """<{0}:crossBin name="" key="0" type="ignore" xmlns:{0}="{1}">\n"""
++                for _ in range(numCvps):
++                    crossBinString += "<{0}:index>0</{0}:index>\n"
++                crossBinString += """<{0}:contents coverageCount="0"></{0}:contents>\n"""
++                crossBinString += "</{0}:crossBin>\n"
++                crossBinString = crossBinString.format(self.ucis_ns, self.ns_map[self.ucis_ns])
+                 # create new crossBin element to be added to the cross
+                 crossBinElement = ET.fromstring(crossBinString)
+-                print("\t\t\t" + str(indexesTuple) + " -> " + str(mergeMap[indexesTuple]))
+-                
+-                # get a generator for the index elements contained by this crossBin;
+-                # we will need to manually iterate through this generator when updating the indexes
+-                indexElementGen = iter(self.findall_ucis_children(crossBinElement, 'index'))
+-                for i in range(len(indexesTuple)):
+-                    # update index element value
+-                    indexElementValue = indexesTuple[i]
+-                    indexElement = next(indexElementGen)
+-                    indexElement.text = str(indexElementValue)
+-                    
+-                # update the contents element with the merged data
+-                contentsElement = self.find_ucis_element(crossBinElement, 'contents')
+-                contentsElement.set('coverageCount', str(mergeMap[indexesTuple]))
+-                # add the contents element to the cross in the mergeDBtree
+                 mergeCrossElement.append(crossBinElement)
+-                
++            else:
++                crossBinString = """<{0}:crossBin name="" key="0" type="default" xmlns:{0}="{1}">\n"""
++                for _ in range(numCvps):
++                    crossBinString += "<{0}:index>0</{0}:index>\n"
++                crossBinString += """<{0}:contents coverageCount="0"></{0}:contents>\n"""
++                crossBinString += "</{0}:crossBin>\n"
++                crossBinString = crossBinString.format(self.ucis_ns, self.ns_map[self.ucis_ns])
++
++                # update crossBins element and append it to the mergeCrossElement
++                for indexesTuple in mergeMap:
++                    # create new crossBin element to be added to the cross
++                    crossBinElement = ET.fromstring(crossBinString)
++                    print("\t\t\t" + str(indexesTuple) + " -> " + str(mergeMap[indexesTuple]))
++
++                    # get a generator for the index elements contained by this crossBin;
++                    # we will need to manually iterate through this generator when updating the indexes
++                    indexElementGen = iter(self.findall_ucis_children(crossBinElement, 'index'))
++                    for i in range(len(indexesTuple)):
++                        # update index element value
++                        indexElementValue = indexesTuple[i]
++                        indexElement = next(indexElementGen)
++                        indexElement.text = str(indexElementValue)
++
++                    # update the contents element with the merged data
++                    contentsElement = self.find_ucis_element(crossBinElement, 'contents')
++                    contentsElement.set('coverageCount', str(mergeMap[indexesTuple]))
++                    # add the contents element to the cross in the mergeDBtree
++                    mergeCrossElement.append(crossBinElement)
++
+             # move the user attribute element to the end of the cross
++            # this attribute is not obligatory
+             userAttrElement = self.find_ucis_element(mergeCrossElement, 'userAttr')
+-            mergeCrossElement.remove(userAttrElement)
+-            mergeCrossElement.append(userAttrElement)
++            if userAttrElement is not None:
++                mergeCrossElement.remove(userAttrElement)
++                mergeCrossElement.append(userAttrElement)
+             
+ def find_xmls(directory):
+     for rootdir, _, files in os.walk(directory):
+@@ -401,4 +431,4 @@
+         for f in filelist:
+             print(f)
+         
+-    print("\nResulted merged UCIS DB can be found at:\n" + merged_db_path)
+\ No newline at end of file
++    print("\nResulted merged UCIS DB can be found at:\n" + merged_db_path)

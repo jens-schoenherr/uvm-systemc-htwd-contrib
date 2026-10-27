@@ -1,0 +1,42 @@
+--- 
++++ 
+@@ -208,8 +208,8 @@
+ class cross_base_data_model;
+ class bin_base_data_model;
+ class global;
+-class cvg_metadata;
+-class scp_metadata;
++struct cvg_metadata;
++struct scp_metadata;
+ /*!
+  *  \brief Alias to std::make_pair
+  *  \param t1 One end of the interval
+@@ -326,8 +326,8 @@
+ };
+ 
+ /*!
+- *  \class api_base_data_model fc_base.hpp
+- *  \brief Base class for api_data_model class
++ *  \class api_data_model fc_base.hpp
++ *  \brief
+  *
+  *  Base class that contains the name of coverage object and valid ptr.
+  */
+@@ -343,7 +343,7 @@
+ };
+ 
+ /*!
+- *  \class bin_base fc_base.hpp
++ *  \class api_base fc_base.hpp
+  *  \brief Base class for bins
+  *
+  *  Basic interface for coverage objects that implements coverage calculation functions
+@@ -784,7 +784,7 @@
+     {
+       std::size_t found = type_name.find_last_of(':');    
+       if(found == std::string::npos) {
+-	name = type_name + "_" + std::to_string(anonymous_count++);
++        name = type_name + "_" + std::to_string(anonymous_count++);
+       }
+       else {
+         name = type_name.substr(found+1) + "_" + std::to_string(anonymous_count++);

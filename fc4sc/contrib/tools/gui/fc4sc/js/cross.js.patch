@@ -1,0 +1,110 @@
+--- 
++++ 
+@@ -22,17 +22,17 @@
+                Date: 2018-Feb-20
+ ******************************************************************************/
+ 
+-function get_proc_style (excluded, pass, fail) {
++function get_proc_style_cr (excluded, pass, fail) {
+ 
+   if (excluded)
+     return "class=\"proc proc_excluded\"";
+ 
+-  if (pass == (pass + fail))
+-    return "class=\"proc proc_full\"";
+-
+   if (pass == 0)
+     return "class=\"proc proc_empty\"";
+ 
++  if (pass == (pass + fail))
++    return "class=\"proc proc_full\"";
++
+   return "class=\"proc proc_partial\"";
+ 
+ }
+@@ -41,31 +41,42 @@
+ 
+   var name = node.getAttribute('name');
+   var expr = '';
+-  var total_bins = 0;
++  var total_bins = 1;
+ 
+   for (var it = 0; it < node.childNodes.length; ++it) {
+     if (node.childNodes[it].nodeType == 1) {
+-      if (node.childNodes[it].nodeName == "ucis:crossBin")
++      if (node.childNodes[it].nodeName.slice(-8) == "crossBin")
+         break;
+-      else if (node.childNodes[it].nodeName == "ucis:crossExpr")
+-        expr += " " + node.childNodes[it].firstChild.data + " x";
++      else if (node.childNodes[it].nodeName.slice(-9) == "crossExpr")
++      {
++        var cvp_name = node.childNodes[it].firstChild.data;
++        expr += " " + cvp_name + " x";
++        var cvp_bins = cvp_map.get(cvp_name);
++        total_bins *= cvp_bins;
++      }
+     }
+   }
+ 
+   expr = expr.slice(0,-1);
+ 
+   for (var it = node.childNodes.length - 1; it >= 0; --it) {
+-    if (node.childNodes[it].nodeType == 1 && node.childNodes[it].nodeName == "ucis:userAttr") {
++    if (node.childNodes[it].nodeType == 1 && node.childNodes[it].nodeName.slice(-8) == "userAttr") {
+       total_bins = node.childNodes[it].getAttribute('key');
+       break;
+     }
+   }
+ 
+-  var proc = (cross_bins.length * 100 / total_bins).toFixed(2);
++  //var proc = (cross_bins.length * 100 / total_bins).toFixed(2);
++
++  var proc = 0.0;
++  if (total_bins != 0) {
++    proc = (cross_bins.length * 100 / total_bins);
++  }
++  proc = proc.toFixed(2)
+ 
+   var option_node;
+   for (var i =0; i < node.childNodes.length; ++i ) {
+-    if (node.childNodes[i].nodeType == 1 && node.childNodes[i].nodeName == "ucis:options") {
++    if (node.childNodes[i].nodeType == 1 && node.childNodes[i].nodeName.slice(-7) == "options") {
+       option_node = node.childNodes[i];
+       break;
+     }
+@@ -83,7 +94,7 @@
+   this.cvp_bins = cross_bins;
+   this.total_bins = total_bins;
+   this.hit_bins =  cross_bins.length;
+-  this.style = get_proc_style(false, cross_bins.length, total_bins - cross_bins.length);
++  this.style = get_proc_style_cr(false, cross_bins.length, total_bins - cross_bins.length);
+ 
+   this.cg_inst_lines = this.hit_bins + 4;
+ 
+@@ -93,21 +104,16 @@
+   var result = "";
+ 
+   result += "<tr>"
+-  +    "<td " + this.style + " rowspan=" + (this.cvp_bin_count + 2) + ">"
+-  +      this.cvp_procent + "%"
+-  +    "</td>"
+-  +  "</tr>";
+-
+-
+-  result +=
+-       "<tr class=\"cvp\">"
+-  +       "<td colspan=\"5\">" + this.name + "</td>"
++  +       "<td " + this.style + " rowspan=" + (this.cvp_bin_count + 1) + ">"
++  +         this.cvp_procent + "%"
++  +       "</td>"
++  +       "<td class=\"cvp\" colspan=\"5\">" + this.name + "</td>"
+   +    "</tr>"
+   +    "<tr>"
+   +      "<td class=\"cvp\" colspan=\"2\">"
+   +       this.exprString
+   +      "</td>"
+-  +      "<td class=\"cvp\" colspan=\"3\">"
++  +      "<td class=\"cvp\" colspan=\"2\">"
+   +       String(this.hit_bins) + "/" + String(this.total_bins) + " bins hit"
+   +      "</td>"
+   +    "</tr>";

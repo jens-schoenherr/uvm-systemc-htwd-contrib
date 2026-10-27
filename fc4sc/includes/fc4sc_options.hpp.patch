@@ -1,0 +1,94 @@
+--- 
++++ 
+@@ -44,25 +44,25 @@
+ struct cvg_option
+ {
+   /*! Weight of instance when computing coverage */
+-  uint weight;
++  uint64_t weight;
+ 
+   /*! Target coverage percentage */
+-  uint goal;
++  uint32_t goal;
+ 
+   /*! Comment for this coverage */
+   std::string comment;
+ 
+   /*! Minimum of hits for each bin */
+-  uint at_least;
++  uint64_t at_least;
+ 
+   /*! !UNIPLEMENTED! Max number of generated bins */
+-  uint auto_bin_max;
++  uint32_t auto_bin_max;
+ 
+   /*! !UNIPLEMENTED! Issue warning if bins overlap in cvp */
+   bool detect_overlap;
+ 
+   /*! !UNIPLEMENTED! Number of missing bins in crosses to be printed */
+-  uint cross_num_print_missing;
++  uint32_t cross_num_print_missing;
+ 
+   /*! !UNIPLEMENTED! Collect coverage per instance */
+   bool per_instance;
+@@ -95,19 +95,19 @@
+ struct cvp_option
+ {
+   /*! Weight of instance when computing coverage */
+-  uint weight;
++  uint64_t weight;
+ 
+   /*! Target coverage percentage */
+-  uint goal;
++  uint32_t goal;
+ 
+   /*! Comment for this coverage */
+   std::string comment;
+ 
+   /*! Minimum of hits for each bin */
+-  uint at_least;
++  uint64_t at_least;
+ 
+   /*! !UNIPLEMENTED! Max number of generated bins */
+-  uint auto_bin_max;
++  uint32_t auto_bin_max;
+ 
+   /*! !UNIPLEMENTED! Issue warning if bins overlap in cvp */
+   bool detect_overlap;
+@@ -133,19 +133,19 @@
+ struct cross_option // cross option declaration
+ {
+   /*! Weight of instance when computing coverage */
+-  uint weight;
++  uint64_t weight;
+ 
+   /*! Target coverage percentage */
+-  uint goal;
++  uint32_t goal;
+ 
+   /*! Comment for this coverage */
+   std::string comment;
+ 
+   /*! Minimum of hits for each bin */
+-  uint at_least;
++  uint64_t at_least;
+ 
+   /*! !UNIPLEMENTED! Number of missing bins in crosses to be printed */
+-  uint cross_num_print_missing;
++  uint32_t cross_num_print_missing;
+ 
+   /*!
+    * \brief Sets all values to default
+@@ -167,10 +167,10 @@
+ struct cvg_type_option // covergroup type_option declaration
+ {
+   /*! Weight of instance when computing coverage */
+-  uint weight;
++  uint64_t weight;
+ 
+   /*! Target coverage percentage */
+-  uint goal;
++  uint32_t goal;
+ 
+   /*! Comment for this coverage */
+   std::string comment;

@@ -1,0 +1,20 @@
+--- 
++++ 
+@@ -32,7 +32,7 @@
+ 
+   template <typename T>
+   static std::vector<interval_t<T>> reunion(const std::vector<interval_t<T>>& lhs,
+-					    const std::vector<interval_t<T>>& rhs) {
++                                            const std::vector<interval_t<T>>& rhs) {
+ 
+     std::vector<interval_t<T>> new_bins = lhs;
+     new_bins.insert(new_bins.end() ,rhs.begin(), rhs.end());
+@@ -59,7 +59,7 @@
+ 
+   template <typename T>
+   static std::vector<interval_t<T>> intersection(const std::vector<interval_t<T>>& lhs,
+-					    const std::vector<interval_t<T>>& rhs) {
++                                                 const std::vector<interval_t<T>>& rhs) {
+ 
+     auto disjoint_lhs = reunion(lhs, {});
+     auto disjoint_rhs = reunion(rhs, {});

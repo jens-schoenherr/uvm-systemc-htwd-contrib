@@ -1,0 +1,11 @@
+--- 
++++ 
+@@ -127,7 +127,7 @@
+       scp_metadata* type_data = fc4sc::global::get_scopes_data(this->cntxt)[scp_type_name];
+       if(type_data->scp_insts.size() == 0) {
+         type_data->file_id = scp_file_id;
+-	type_data->line = scp_line;
++        type_data->line = scp_line;
+       }
+       fc4sc::global::get_scopes_data(this->cntxt)[scp_type_name]->scp_insts.push_back(scp_data);
+     }

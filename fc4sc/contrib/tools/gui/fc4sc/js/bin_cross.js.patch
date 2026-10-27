@@ -1,0 +1,14 @@
+--- 
++++ 
+@@ -29,9 +29,9 @@
+   for (var index = 0; index < node.childNodes.length; ++index) {
+     if (node.childNodes[index].nodeType == 1) {
+ 
+-      if (node.childNodes[index].nodeName == "ucis:index")
++      if (node.childNodes[index].nodeName.slice(-5) == "index")
+         this.indexes.push(node.childNodes[index].firstChild.data);
+-      else if (node.childNodes[index].nodeName == "ucis:contents") {
++      else if (node.childNodes[index].nodeName.slice(-8) == "contents") {
+         this.count = node.childNodes[index].getAttribute("coverageCount");
+         break;
+       }

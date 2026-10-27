@@ -1,0 +1,155 @@
+--- 
++++ 
+@@ -129,7 +129,7 @@
+   typedef std::pair<unsigned int, unsigned int> bin_range_t;
+ 
+   struct IntervalComp {
+-    bool operator() (fc4sc::interval_t<T> a, fc4sc::interval_t<T> b) {
++    bool operator() (fc4sc::interval_t<T> a, fc4sc::interval_t<T> b) const {
+       return a.second < b.second;
+     }
+   };
+@@ -189,7 +189,7 @@
+     cvp->has_sample_expression = this->has_sample_expression;
+     cvp->sample_expression = this->sample_expression;
+     cvp->sample_condition = this->sample_condition;
+-    
++
+     cvp->regular_interval_map = this->regular_interval_map;
+     cvp->illegal_interval_map = this->illegal_interval_map;
+     cvp->ignore_interval_map = this->ignore_interval_map;
+@@ -231,7 +231,7 @@
+     auto& elem_entry = entry[0];
+     for(auto it = bin.bin_data->intervals.begin();it != bin.bin_data->intervals.end(); it++)
+     {
+-      map_it = interval_map.insert(map_it,{*it, entry }); 
++      map_it = interval_map.insert(map_it,{*it, entry });
+       elem_entry.second = ++i;
+     }
+   }
+@@ -305,8 +305,8 @@
+       if(range.first > range.second) {
+         return map_it;
+       }
+-      if(range.first <= it.first && range.second >= it.second) { 
+-	map_it->second.push_back(bin_range_key);
++      if(range.first <= it.first && range.second >= it.second) {
++        map_it->second.push_back(bin_range_key);
+       }
+       if(range.first < it.first) {
+         std::vector<bin_range_t> bin_range_vec{bin_range_key};
+@@ -346,7 +346,7 @@
+ 
+   /*! Flat map representation of coverpoint's bin for binary search sampling */
+   interval_map_t ignore_interval_map;
+- 
++
+   /*!
+    *  \brief Sampling function at coverpoint level
+    *  \param cvp_val Value to be sampled for this coverpoint
+@@ -385,7 +385,7 @@
+       }
+     }
+ 
+-    // 3) Sample regular bins    
++    // 3) Sample regular bins
+     range_it  = get_interval_bs(this->regular_interval_map,cvp_val);
+     if(range_it != this->regular_interval_map.end()) {
+       for(auto bin_range_it : range_it->second)
+@@ -397,7 +397,7 @@
+         }
+       }
+     }
+-    
++
+     if (!this->last_sample_success) { cvp_data->misses++; }
+   }
+ 
+@@ -534,7 +534,7 @@
+     return bins.size();
+   }
+ 
+-  void sample() 
++  void sample()
+   {
+     if(valid_data.use_count() == 0) {
+       std::cerr << "Error: coverage data has been deleted\n";
+@@ -546,17 +546,17 @@
+         cond = sample_condition();
+       }  catch(const std::exception& e) {
+         std::cerr << e.what() << "\n";
+-	std::cerr << "sample_condition is not binded for coverpoint " << this->cvp_data->name << "\n";
+-	throw e;
++        std::cerr << "sample_condition is not binded for coverpoint " << this->cvp_data->name << "\n";
++        throw e;
+       }
+       if (cond) {
+         try {
+           this->sample(sample_expression());
+-	} catch(const std::exception& e) {
+-	  std::cerr << e.what() << "\n";
+-	  std::cerr << "sample_expression is not binded for coverpoint " << this->cvp_data->name << "\n";
+-	  throw e;
+-	}
++        } catch(const std::exception& e) {
++          std::cerr << e.what() << "\n";
++          std::cerr << "sample_expression is not binded for coverpoint " << this->cvp_data->name << "\n";
++          throw e;
++        }
+       }
+       else {
+         // This is a fix so that crosses are not sampled if any of the coverpoints
+@@ -574,7 +574,7 @@
+    *  \brief Computes coverage for this instance
+    *  \returns Coverage value as a double between 0 and 100
+    */
+-  double get_inst_coverage() const 
++  double get_inst_coverage() const
+   {
+     if(valid_data.use_count() == 0) {
+       std::cerr << "Error: coverage data has been deleted\n";
+@@ -599,7 +599,7 @@
+    *  \param total Total number of bins in this coverpoint
+    *  \returns Coverage value as a double between 0 and 100
+    */
+-  double get_inst_coverage(int &covered, int &total) const 
++  double get_inst_coverage(int &covered, int &total) const
+   {
+     if(valid_data.use_count() == 0) {
+       std::cerr << "Error: coverage data has been deleted\n";
+@@ -677,7 +677,7 @@
+   /*!
+    * \brief Returns instance name
+    */
+-  std::string& name() 
++  std::string& name()
+   {
+     if(valid_data.use_count() == 0) {
+       std::cerr << "Error: coverage data has been deleted\n";
+@@ -690,7 +690,7 @@
+   /*!
+    * \brief Returns instance options
+    */
+-  cvp_option& option() 
++  cvp_option& option()
+   {
+     if(valid_data.use_count() == 0) {
+       std::cerr << "Error: coverage data has been deleted\n";
+@@ -810,7 +810,7 @@
+     static_assert(std::is_same<T,ret_type(Args...)>::value,"Argument variables must match coverpoint sample expression");
+     cvp_base& cp_base = cvg.get_coverpoint(cvp_fact->cvp_data->name);
+     coverpoint<ret_type>* cvp = dynamic_cast< coverpoint<ret_type>* >(&cp_base);
+-    if( cvp->sample_expression ) 
++    if( cvp->sample_expression )
+       throw ("Attempted to bind sample expression that is already binded in coverpoint " + cvp->cvp_data->name + " in covergroup " + cvg.name());
+     cvp->sample_expression = std::bind(sample_expression,std::ref(args)...);
+     if(!cvg.is_enabled()) std::cerr << "Warning: called bind_sample on disabled covergroup " << cvg.name() << "\n";
+@@ -827,7 +827,7 @@
+     static_assert(std::is_same<U,bool(Args...)>::value,"Argument variables must match coverpoint sample condition expression");
+     cvp_base& cp_base = cvg.get_coverpoint(cvp_fact->cvp_data->name);
+     coverpoint<ret_type>* cvp = dynamic_cast< coverpoint<ret_type>* >(&cp_base);
+-    if( cvp->sample_condition ) 
++    if( cvp->sample_condition )
+       throw ("Attempted to bind sample condition that is already binded in coverpoint " + cvp->name() + " in covergroup " + cvg.name());
+     cvp->sample_condition = std::bind(sample_condition,std::ref(args)...);
+     if(!cvg.is_enabled()) std::cerr << "Warning: called bind_condition on disabled covergroup " << cvg.name() << "\n";

@@ -1,0 +1,97 @@
+--- 
++++ 
+@@ -27,7 +27,7 @@
+   var val2 = 0;
+   var range_count = 0;
+ 
+-  var total_hits = parseInt(node.getAttribute('alias'));
++  var total_hits = 0;
+   var name = node.getAttribute('name');
+   var ranges = [];
+   var range = 0;
+@@ -35,7 +35,23 @@
+   this.type = String(node.getAttribute('type'));
+ 
+   for (var index = 0; index < node.childNodes.length; ++index) {
+-    if (node.childNodes[index].nodeType == 1 && node.childNodes[index].nodeName == "ucis:range" ) {
++    if (node.childNodes[index].nodeType == 1 && node.childNodes[index].nodeName.slice(-5) == "range" ) {
++      var range_node = node.childNodes[index];
++
++      for (var range_index = 0; range_index < range_node.childNodes.length; ++range_index) {
++        if (range_node.childNodes[range_index].nodeType == 1 && range_node.childNodes[range_index].nodeName.slice(-8) == "contents" ) {
++          var hits  = parseInt(range_node.childNodes[range_index].getAttribute("coverageCount"));
++          total_hits = total_hits + hits;
++        }
++      }
++    }
++  }
++
++  var fail_range = 0;
++  var pass_range = 0;
++
++  for (var index = 0; index < node.childNodes.length; ++index) {
++    if (node.childNodes[index].nodeType == 1 && node.childNodes[index].nodeName.slice(-5) == "range" ) {
+ 
+       range++;
+ 
+@@ -50,46 +66,38 @@
+ 
+       if (this.type.localeCompare("illegal") == 0) {
+         if (total_hits > 0)
+-          fail_bin++;
++          fail_range++;
+         else
+-          pass_bin++;
++          pass_range++;
+       } else {
+         if (total_hits > 0)
+-          pass_bin++;
++          pass_range++;
+         else
+-          fail_bin++;
++          fail_range++;
+       }
+ 
+     }
+   }
++  pass_ranges += pass_range;
++  fail_ranges += fail_range;
++  if (this.type.localeCompare("illegal") != 0) {
++    if (total_hits > 0) {
++      pass_bins++;
++    } else {
++      fail_bins++;
++    }
++  }
+ 
+   this.rowspan = ranges.length
+   this.name = name;
+   this.ranges = ranges;
+-  this.total_hits = total_hits / this.ranges.length;
++  this.total_hits = total_hits;
+ 
+   this.style_class = this.get_style_class();
+   this.tick = this.get_tick();
+ }
+ 
+ Bin.prototype.get_style_class = function() {
+-
+-  if (!this.type.localeCompare('illegal'))
+-    return "bin_" + (this.total_hits == 0 ? "illegal" : "fail");
+-
+-  return "bin_" + ((this.total_hits > 0) ? "pass" : "fail");
+-
+-}
+-
+-Bin.prototype.get_tick = function() {
+-
+-  if (!this.type.localeCompare('illegal'))
+-    return (this.total_hits != 0 ? "&#10008;" : "&#10004;")
+-
+-  return (this.total_hits == 0 ? "&#10008;" : "&#10004;" )
+-}
+-
+-Bin.prototype.get_style_class = function() {
+ 
+   if (!this.type.localeCompare('illegal'))
+     return "bin_" + (this.total_hits == 0 ? "illegal" : "fail");
