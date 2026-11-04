@@ -1,0 +1,9 @@
+
+*/*.depend
+*/*.layout
+*/bin
+*/obj
+*/*.xml
+*/*.html
+*/build
+
