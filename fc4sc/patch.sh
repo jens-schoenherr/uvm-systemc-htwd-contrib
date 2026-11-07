@@ -40,6 +40,7 @@ done
 
 add_files=" \
 doc/fc4sc-users-guide.pdf \
+includes/html_printer.hpp \
 examples/users_guide/default_scope/CMakeLists.txt \
 examples/users_guide/default_scope/default_scope_example.cpp \
 examples/users_guide/default_scope/uint8_cvp.cpp \
@@ -69,6 +70,30 @@ examples/users_guide/scoped/wo_cvp.cpp \
 examples/users_guide/scoped/wo_cvp.h \
 examples/users_guide/.gitignore \
 contrib/tools/.gitignore \
+contrib/tests/gui/.gitignore \
+contrib/tests/gui/test_gui.sh \
+contrib/tests/gui/basics/readme.md \
+contrib/tests/gui/basics/CMakeLists.txt \
+contrib/tests/gui/basics/char_cvp.cpp \
+contrib/tests/gui/basics/char_cvp.h \
+contrib/tests/gui/basics/gui_test_basics.cpp \
+contrib/tests/gui/basics/uint8_cvp.cpp \
+contrib/tests/gui/basics/uint8_cvp.h \
+contrib/tests/gui/basics/wo_cvp.cpp \
+contrib/tests/gui/basics/wo_cvp.h \
+contrib/tests/gui/basics/ref_files/test_html_out.txt \
+contrib/tests/gui/basics/ref_files/char_cvp_coverage_compact_3.html \
+contrib/tests/gui/basics/ref_files/char_cvp_coverage_full_1.html \
+contrib/tests/gui/basics/ref_files/char_cvp_coverage_partial_2.html \
+contrib/tests/gui/basics/ref_files/char_cvp_coverage.xml.html \
+contrib/tests/gui/basics/ref_files/uint8_cvp_coverage_compact_1.html \
+contrib/tests/gui/basics/ref_files/uint8_cvp_coverage_full_2.html \
+contrib/tests/gui/basics/ref_files/uint8_cvp_coverage_partial_3.html \
+contrib/tests/gui/basics/ref_files/uint8_cvp_coverage.xml.html \
+contrib/tests/gui/basics/ref_files/wo_cvp_coverage_compact_3.html \
+contrib/tests/gui/basics/ref_files/wo_cvp_coverage_full_1.html \
+contrib/tests/gui/basics/ref_files/wo_cvp_coverage_partial_2.html \
+contrib/tests/gui/basics/ref_files/wo_cvp_coverage.xml.html \
 "
 
 for file in $add_files; do
