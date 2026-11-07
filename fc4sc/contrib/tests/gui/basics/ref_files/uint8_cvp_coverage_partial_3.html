@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>fc4sc coverage table</title>
+<style>
+body {
+  font-family: monospace;
+  font-size: 1rem;
+}
+
+table#cg_table {
+  border-spacing: 0;
+  border-collapse: separate;
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  margin-bottom: 32px;
+}
+
+table#cg_table td, table#cg_table th {
+  border: 0;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+/******************************************************************************
+
+  Copyright 2003-2018 AMIQ Consulting s.r.l.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+******************************************************************************/
+/******************************************************************************
+  Original Authors: Teodor Vasilache and Dragos Dospinescu,
+                    AMIQ Consulting s.r.l. (contributors@amiq.com)
+
+              Date: 2018-Feb-20
+
+  Modified by: Valentin Siegel, HTW Dresden
+               (Adaptions for usage without extra css file)
+
+               Date: 2026-09-28
+******************************************************************************/
+.cvp {
+  font-size: 120%;
+  font-weight: bold;
+}
+
+.cg_inst {
+  font-size: 170%;
+  font-weight: bold;
+}
+
+.bin_fail {
+  color : red;
+  font-weight: bold;
+  left: 30%;
+}
+
+.bin_pass {
+  color : green;
+  font-weight: bold;
+  left: 30%;
+}
+
+.bin_illegal {
+  color : #77d47a;
+  font-weight: bold;
+  left: 30%;
+}
+
+table#cg_table {
+  width: 100%;
+  overflow-x: inherit
+}
+
+td,tr,th {
+  text-align: center;
+  border: 1px solid black;
+}
+
+.my_div {
+  width: 100%;
+  max-width: 1000px;
+  box-sizing: border-box;
+  position:absolute;
+  left:50%;
+  padding:15px;
+  -ms-transform: translateX(-50%);
+  -webkit-transform: translate(-50%,0%);
+  transform: translate(-50%,0%);
+}
+
+.pct {
+  font-size: 200%;
+}
+
+.pct_excluded {
+  color: gray;
+}
+
+.pct_empty {
+  color: red;
+}
+
+.pct_partial {
+  color: #ebc944;
+}
+
+.pct_full {
+  color: green;
+}
+</style>
+</head>
+<body>
+<div id="file-content" class="my_div">
+
+<div style="text-align: center;" id="scope_uint8">
+<h1>scope_uint8 scope_uint8</h1>
+<table id="cg_table">
+
+<tr>
+<th class="pct pct_partial" rowspan="57">31.931%</th>
+<th class="cg_inst" colspan="4">uint8_cvp_coverage uint8_cvg</th>
+</tr>
+
+
+<!-- coverpoint: test_cvp1 -->
+<tr><td class="pct pct_partial" rowspan="5">50.000%</td>
+<td class="cvp" rowspan="1" colspan="3">test_cvp1 &quot;mode&quot;</td></tr>
+
+<tr class="bin_pass">
+<td class="bin_header" rowspan="1">zero</td>
+<td rowspan="1">1</td>
+<td rowspan="1">&#10004;</td>
+</tr>
+
+<tr class="bin_fail">
+<td class="bin_header" rowspan="1">one</td>
+<td rowspan="1">0</td>
+<td rowspan="1">&#10008;</td>
+</tr>
+
+<tr class="bin_pass">
+<td class="bin_header" rowspan="1">two</td>
+<td rowspan="1">1</td>
+<td rowspan="1">&#10004;</td>
+</tr>
+
+<tr class="bin_fail">
+<td class="bin_header" rowspan="1">three</td>
+<td rowspan="1">0</td>
+<td rowspan="1">&#10008;</td>
+</tr>
+
+
+<!-- coverpoint: test_cvp2 -->
+<tr><td class="pct pct_partial" rowspan="6">80.000%</td>
+<td class="cvp" rowspan="1" colspan="3">test_cvp2 &quot;mode&quot;</td></tr>
+
+<tr class="bin_fail">
+<td class="bin_header" rowspan="1">four</td>
+<td rowspan="1">0</td>
+<td rowspan="1">&#10008;</td>
+</tr>
+
+<tr class="bin_pass">
+<td class="bin_header" rowspan="1">five</td>
+<td rowspan="1">1</td>
+<td rowspan="1">&#10004;</td>
+</tr>
+
+<tr class="bin_pass">
+<td class="bin_header" rowspan="1">six</td>
+<td rowspan="1">8</td>
+<td rowspan="1">&#10004;</td>
+</tr>
+
+<tr class="bin_pass">
+<td class="bin_header" rowspan="1">seven</td>
+<td rowspan="1">8</td>
+<td rowspan="1">&#10004;</td>
+</tr>
+
+<tr class="bin_pass">
+<td class="bin_header" rowspan="1">eight</td>
+<td rowspan="1">8</td>
+<td rowspan="1">&#10004;</td>
+</tr>
+
+
+<!-- coverpoint: test_cvp3 -->
+<tr><td class="pct pct_empty" rowspan="1">0.000%</td>
+<td class="cvp" rowspan="1" colspan="3">test_cvp3 &quot;mode&quot;</td></tr>
+
+
+<!-- coverpoint: test_cvp4 -->
+<tr><td class="pct pct_empty" rowspan="1">0.000%</td>
+<td class="cvp" rowspan="1" colspan="3">test_cvp4 &quot;mode&quot;</td></tr>
+
+
+<!-- coverpoint: interval_cvp -->
+<tr><td class="pct pct_partial" rowspan="9">57.143%</td>
+<td class="cvp" rowspan="1" colspan="3">interval_cvp &quot;mode&quot;</td></tr>
+
+<tr class="bin_pass">
+<td class="bin_header" rowspan="1">zero</td>
+<td rowspan="1">1</td>
+<td rowspan="1">&#10004;</td>
+</tr>
+
+<tr class="bin_pass">
+<td class="bin_header" rowspan="1">small</td>
+<td rowspan="1">1</td>
+<td rowspan="1">&#10004;</td>
+</tr>
+
+<tr class="bin_pass">
+<td class="bin_header" rowspan="1">larger</td>
+<td rowspan="1">1</td>
+<td rowspan="1">&#10004;</td>
+</tr>
+
+<tr class="bin_pass">
+<td class="bin_header" rowspan="1">larger2</td>
+<td rowspan="1">8</td>
+<td rowspan="1">&#10004;</td>
+</tr>
+
+<tr class="bin_fail">
+<td class="bin_header" rowspan="1">upper_values[0]</td>
+<td rowspan="1">0</td>
+<td rowspan="1">&#10008;</td>
+</tr>
+
+<tr class="bin_fail">
+<td class="bin_header" rowspan="1">upper_values[1]</td>
+<td rowspan="1">0</td>
+<td rowspan="1">&#10008;</td>
+</tr>
+
+<tr class="bin_fail">
+<td class="bin_header" rowspan="1">upper_values[2]</td>
+<td rowspan="1">0</td>
+<td rowspan="1">&#10008;</td>
+</tr>
+
+<tr class="bin_illegal">
+<td class="bin_header" rowspan="1">illegal mode</td>
+<td rowspan="1">0</td>
+<td rowspan="1">&#10004;</td>
+</tr>
+
+
+<!-- coverpoint: array_cvp -->
+<tr><td class="pct pct_partial" rowspan="10">33.333%</td>
+<td class="cvp" rowspan="1" colspan="3">array_cvp &quot;mode&quot;</td></tr>
+
+<tr class="bin_pass">
+<td class="bin_header" rowspan="1"> 9/3[0]</td>
+<td rowspan="1">2</td>
+<td rowspan="1">&#10004;</td>
+</tr>
+
+<tr class="bin_fail">
+<td class="bin_header" rowspan="1"> 9/3[1]</td>
+<td rowspan="1">0</td>
+<td rowspan="1">&#10008;</td>
+</tr>
+
+<tr class="bin_pass">
+<td class="bin_header" rowspan="1"> 9/3[2]</td>
+<td rowspan="1">1</td>
+<td rowspan="1">&#10004;</td>
+</tr>
+
+<tr class="bin_pass">
+<td class="bin_header" rowspan="1">10/3[0]</td>
+<td rowspan="1">8</td>
+<td rowspan="1">&#10004;</td>
+</tr>
+
+<tr class="bin_fail">
+<td class="bin_header" rowspan="1">10/3[1]</td>
+<td rowspan="1">0</td>
+<td rowspan="1">&#10008;</td>
+</tr>
+
+<tr class="bin_fail">
+<td class="bin_header" rowspan="1">10/3[2]</td>
+<td rowspan="1">0</td>
+<td rowspan="1">&#10008;</td>
+</tr>
+
+<tr class="bin_fail">
+<td class="bin_header" rowspan="1">11/3[0]</td>
+<td rowspan="1">0</td>
+<td rowspan="1">&#10008;</td>
+</tr>
+
+<tr class="bin_fail">
+<td class="bin_header" rowspan="1">11/3[1]</td>
+<td rowspan="1">0</td>
+<td rowspan="1">&#10008;</td>
+</tr>
+
+<tr class="bin_fail">
+<td class="bin_header" rowspan="1">11/3[2]</td>
+<td rowspan="1">0</td>
+<td rowspan="1">&#10008;</td>
+</tr>
+
+
+<!-- coverpoint: cvp1 -->
+<tr><td class="pct pct_partial" rowspan="4">66.667%</td>
+<td class="cvp" rowspan="1" colspan="3">cvp1 &quot;v1&quot;</td></tr>
+
+<tr class="bin_fail">
+<td class="bin_header" rowspan="1">zero</td>
+<td rowspan="1">0</td>
+<td rowspan="1">&#10008;</td>
+</tr>
+
+<tr class="bin_pass">
+<td class="bin_header" rowspan="1">one</td>
+<td rowspan="1">1</td>
+<td rowspan="1">&#10004;</td>
+</tr>
+
+<tr class="bin_pass">
+<td class="bin_header" rowspan="1">two</td>
+<td rowspan="1">2</td>
+<td rowspan="1">&#10004;</td>
+</tr>
+
+
+<!-- coverpoint: cvp2 -->
+<tr><td class="pct pct_partial" rowspan="4">66.667%</td>
+<td class="cvp" rowspan="1" colspan="3">cvp2 &quot;v2&quot;</td></tr>
+
+<tr class="bin_pass">
+<td class="bin_header" rowspan="1">zero</td>
+<td rowspan="1">1</td>
+<td rowspan="1">&#10004;</td>
+</tr>
+
+<tr class="bin_fail">
+<td class="bin_header" rowspan="1">one</td>
+<td rowspan="1">0</td>
+<td rowspan="1">&#10008;</td>
+</tr>
+
+<tr class="bin_pass">
+<td class="bin_header" rowspan="1">two</td>
+<td rowspan="1">2</td>
+<td rowspan="1">&#10004;</td>
+</tr>
+
+
+<!-- coverpoint cross: cvp1_cvp2_cr -->
+<tr>
+<td class="pct pct_partial" rowspan="5">22.222%</td>
+</tr>
+
+<tr>
+<td class="cvp" colspan="3">cvp1_cvp2_cr</td>
+</tr>
+<tr>
+<td class="cvp" colspan="1">cvp2 x cvp1</td>
+<td class="cvp" colspan="2">2/9 bins hit</td>
+</tr>
+<tr class="bin_pass">
+<td colspan="1">{2,1}</td>
+<td>1</td>
+<td>&#10004;</td>
+</tr>
+<tr class="bin_pass">
+<td colspan="1">{2,2}</td>
+<td>1</td>
+<td>&#10004;</td>
+</tr>
+
+
+<!-- coverpoint cross: test_interval_cr -->
+<tr>
+<td class="pct pct_partial" rowspan="5">7.143%</td>
+</tr>
+
+<tr>
+<td class="cvp" colspan="3">test_interval_cr</td>
+</tr>
+<tr>
+<td class="cvp" colspan="1">interval_cvp x test_cvp1</td>
+<td class="cvp" colspan="2">2/28 bins hit</td>
+</tr>
+<tr class="bin_pass">
+<td colspan="1">{0,0}</td>
+<td>1</td>
+<td>&#10004;</td>
+</tr>
+<tr class="bin_pass">
+<td colspan="1">{1,2}</td>
+<td>1</td>
+<td>&#10004;</td>
+</tr>
+
+
+<!-- coverpoint cross: four_cr -->
+<tr>
+<td class="pct pct_empty" rowspan="3">0.000%</td>
+</tr>
+
+<tr>
+<td class="cvp" colspan="3">four_cr</td>
+</tr>
+<tr>
+<td class="cvp" colspan="1">interval_cvp x test_cvp1 x cvp2 x cvp1</td>
+<td class="cvp" colspan="2">0/252 bins hit</td>
+</tr>
+
+
+<!-- coverpoint cross: cvp3_cvp4_empty_cr -->
+<tr>
+<td class="pct pct_empty" rowspan="3">0.000%</td>
+</tr>
+
+<tr>
+<td class="cvp" colspan="3">cvp3_cvp4_empty_cr</td>
+</tr>
+<tr>
+<td class="cvp" colspan="1">test_cvp4 x test_cvp3</td>
+<td class="cvp" colspan="2">0/0 bins hit</td>
+</tr>
+</table>
+</div>
+</div>
+</body>
+</html>

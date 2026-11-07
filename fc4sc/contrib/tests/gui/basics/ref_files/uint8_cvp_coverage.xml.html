@@ -1,0 +1,353 @@
+<html><head><link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+<link rel="stylesheet" href="fc4sc/css/fc4sc.css">
+<link rel="stylesheet" type="text/css" media="print" href="bootstrap/css/bootstrap.css">
+
+</head><body><input class="d-print-none" type="file" id="file-input">
+
+<h3 id="top" class="d-print-none">Contents of the file:</h3>
+
+<div id="toc_p" class="toc d-print-none">
+    <div id="buttons">
+        <table id="toc_table" style="border:none !important;">
+            <tbody><tr style="border:none !important;">
+                <td style="border: none !important">
+                    <h5>Show full</h5>
+                </td>
+                <td style="border: none !important">
+                    <label class="switch">
+                        <input id="show_full" type="checkbox" onclick="button_change(0)">
+                        <span class="slider round"></span>
+                    </label>
+                </td>
+            </tr>
+            <tr style="border:none !important;">
+                <td style="border: none !important">
+                    <h5>Show partial</h5>
+                </td>
+                <td style="border: none !important">
+                    <label class="switch">
+                        <input id="show_partial" type="checkbox" onclick="button_change(1)">
+                        <span class="slider round"></span>
+                    </label>
+                </td>
+            </tr>
+            <tr style="border:none !important;">
+                <td style="border: none !important">
+                    <h5>Show empty</h5>
+                </td>
+                <td style="border: none !important">
+                    <label class="switch">
+                        <input id="show_empty" type="checkbox" onclick="button_change(2)">
+                        <span class="slider round"></span>
+                    </label>
+                </td>
+            </tr>
+        </tbody></table>
+    </div>
+
+    <div id="toc_header"><br><h4>Covergroup types</h4>		 <a href="#top">Back to top </a> </div>
+
+    <div id="toc" class="toc_types"><a href="#scope_uint8">scope_uint8</a><br></div>
+</div>
+
+<pre id="file-content" class="my_div"><div style="text-align: center;" id="scope_uint8"><h1>scope_uint8</h1><table id="cg_table" border="1"> <tbody><tr><th class="proc proc_partial" rowspan="58">31.93%</th><th class="cg_inst" colspan="5">uint8_cvg</th></tr><tr><td class="proc proc_partial" rowspan="5">50.00%</td><td class="cvp" rowspan="1" colspan="4">test_cvp1 "mode"</td></tr><tr class="bin_pass"><td class="bin_header" rowspan="1">zero</td><td>0</td><td rowspan="1">1</td><td rowspan="1">✔</td></tr><tr class="bin_fail"><td class="bin_header" rowspan="1">one</td><td>1</td><td rowspan="1">0</td><td rowspan="1">✘</td></tr><tr class="bin_pass"><td class="bin_header" rowspan="1">two</td><td>2</td><td rowspan="1">1</td><td rowspan="1">✔</td></tr><tr class="bin_fail"><td class="bin_header" rowspan="1">three</td><td>3</td><td rowspan="1">0</td><td rowspan="1">✘</td></tr><tr><td class="proc proc_partial" rowspan="6">80.00%</td><td class="cvp" rowspan="1" colspan="4">test_cvp2 "mode"</td></tr><tr class="bin_fail"><td class="bin_header" rowspan="1">four</td><td>4</td><td rowspan="1">0</td><td rowspan="1">✘</td></tr><tr class="bin_pass"><td class="bin_header" rowspan="1">five</td><td>[5:9]</td><td rowspan="1">1</td><td rowspan="1">✔</td></tr><tr class="bin_pass"><td class="bin_header" rowspan="1">six</td><td>[7:12]</td><td rowspan="1">8</td><td rowspan="1">✔</td></tr><tr class="bin_pass"><td class="bin_header" rowspan="1">seven</td><td>12</td><td rowspan="1">8</td><td rowspan="1">✔</td></tr><tr class="bin_pass"><td class="bin_header" rowspan="1">eight</td><td>12</td><td rowspan="1">8</td><td rowspan="1">✔</td></tr><tr><td class="proc proc_empty" rowspan="1">0.00%</td><td class="cvp" rowspan="1" colspan="4">test_cvp3 "mode"</td></tr><tr><td class="proc proc_empty" rowspan="1">0.00%</td><td class="cvp" rowspan="1" colspan="4">test_cvp4 "mode"</td></tr><tr><td class="proc proc_partial" rowspan="14">57.14%</td><td class="cvp" rowspan="1" colspan="4">interval_cvp "mode"</td></tr><tr class="bin_pass"><td class="bin_header" rowspan="1">zero</td><td>0</td><td rowspan="1">1</td><td rowspan="1">✔</td></tr><tr class="bin_pass"><td class="bin_header" rowspan="1">small</td><td>[1:3]</td><td rowspan="1">1</td><td rowspan="1">✔</td></tr><tr class="bin_pass"><td class="bin_header" rowspan="2">larger</td><td>4</td><td rowspan="2">1</td><td rowspan="2">✔</td></tr><tr class="bin_pass"><td>[5:10]</td></tr><tr class="bin_pass"><td class="bin_header" rowspan="5">larger2</td><td>10</td><td rowspan="5">8</td><td rowspan="5">✔</td></tr><tr class="bin_pass"><td>11</td></tr><tr class="bin_pass"><td>[12:15]</td></tr><tr class="bin_pass"><td>[18:21]</td></tr><tr class="bin_pass"><td>22</td></tr><tr class="bin_fail"><td class="bin_header" rowspan="1">upper_values[0]</td><td>[17:29]</td><td rowspan="1">0</td><td rowspan="1">✘</td></tr><tr class="bin_fail"><td class="bin_header" rowspan="1">upper_values[1]</td><td>[30:42]</td><td rowspan="1">0</td><td rowspan="1">✘</td></tr><tr class="bin_fail"><td class="bin_header" rowspan="1">upper_values[2]</td><td>[43:55]</td><td rowspan="1">0</td><td rowspan="1">✘</td></tr><tr class="bin_illegal"><td class="bin_header" rowspan="1">illegal mode</td><td>255</td><td rowspan="1">0</td><td rowspan="1">✔</td></tr><tr><td class="proc proc_partial" rowspan="10">33.33%</td><td class="cvp" rowspan="1" colspan="4">array_cvp "mode"</td></tr><tr class="bin_pass"><td class="bin_header" rowspan="1"> 9/3[0]</td><td>[0:2]</td><td rowspan="1">2</td><td rowspan="1">✔</td></tr><tr class="bin_fail"><td class="bin_header" rowspan="1"> 9/3[1]</td><td>[3:5]</td><td rowspan="1">0</td><td rowspan="1">✘</td></tr><tr class="bin_pass"><td class="bin_header" rowspan="1"> 9/3[2]</td><td>[6:8]</td><td rowspan="1">1</td><td rowspan="1">✔</td></tr><tr class="bin_pass"><td class="bin_header" rowspan="1">10/3[0]</td><td>[10:12]</td><td rowspan="1">8</td><td rowspan="1">✔</td></tr><tr class="bin_fail"><td class="bin_header" rowspan="1">10/3[1]</td><td>[13:15]</td><td rowspan="1">0</td><td rowspan="1">✘</td></tr><tr class="bin_fail"><td class="bin_header" rowspan="1">10/3[2]</td><td>[16:19]</td><td rowspan="1">0</td><td rowspan="1">✘</td></tr><tr class="bin_fail"><td class="bin_header" rowspan="1">11/3[0]</td><td>[20:23]</td><td rowspan="1">0</td><td rowspan="1">✘</td></tr><tr class="bin_fail"><td class="bin_header" rowspan="1">11/3[1]</td><td>[24:27]</td><td rowspan="1">0</td><td rowspan="1">✘</td></tr><tr class="bin_fail"><td class="bin_header" rowspan="1">11/3[2]</td><td>[28:30]</td><td rowspan="1">0</td><td rowspan="1">✘</td></tr><tr><td class="proc proc_partial" rowspan="4">66.67%</td><td class="cvp" rowspan="1" colspan="4">cvp1 "v1"</td></tr><tr class="bin_fail"><td class="bin_header" rowspan="1">zero</td><td>0</td><td rowspan="1">0</td><td rowspan="1">✘</td></tr><tr class="bin_pass"><td class="bin_header" rowspan="1">one</td><td>1</td><td rowspan="1">1</td><td rowspan="1">✔</td></tr><tr class="bin_pass"><td class="bin_header" rowspan="1">two</td><td>2</td><td rowspan="1">2</td><td rowspan="1">✔</td></tr><tr><td class="proc proc_partial" rowspan="4">66.67%</td><td class="cvp" rowspan="1" colspan="4">cvp2 "v2"</td></tr><tr class="bin_pass"><td class="bin_header" rowspan="1">zero</td><td>0</td><td rowspan="1">1</td><td rowspan="1">✔</td></tr><tr class="bin_fail"><td class="bin_header" rowspan="1">one</td><td>1</td><td rowspan="1">0</td><td rowspan="1">✘</td></tr><tr class="bin_pass"><td class="bin_header" rowspan="1">two</td><td>2</td><td rowspan="1">2</td><td rowspan="1">✔</td></tr><tr><td class="proc proc_partial" rowspan="4">22.22%</td><td class="cvp" colspan="5">cvp1_cvp2_cr</td></tr><tr><td class="cvp" colspan="2"> cvp2 x cvp1 </td><td class="cvp" colspan="2">2/9 bins hit</td></tr><tr class="bin_pass"><td colspan="2">{2,1}</td><td>1</td><td>✔</td></tr><tr class="bin_pass"><td colspan="2">{2,2}</td><td>1</td><td>✔</td></tr><tr><td class="proc proc_partial" rowspan="4">7.14%</td><td class="cvp" colspan="5">test_interval_cr</td></tr><tr><td class="cvp" colspan="2"> interval_cvp x test_cvp1 </td><td class="cvp" colspan="2">2/28 bins hit</td></tr><tr class="bin_pass"><td colspan="2">{0,0}</td><td>1</td><td>✔</td></tr><tr class="bin_pass"><td colspan="2">{1,2}</td><td>1</td><td>✔</td></tr><tr><td class="proc proc_empty" rowspan="2">0.00%</td><td class="cvp" colspan="5">four_cr</td></tr><tr><td class="cvp" colspan="2"> interval_cvp x test_cvp1 x cvp2 x cvp1 </td><td class="cvp" colspan="2">0/252 bins hit</td></tr><tr><td class="proc proc_empty" rowspan="2">0.00%</td><td class="cvp" colspan="5">cvp3_cvp4_empty_cr</td></tr><tr><td class="cvp" colspan="2"> test_cvp4 x test_cvp3 </td><td class="cvp" colspan="2">0/0 bins hit</td></tr></tbody></table><br></div></pre>
+
+<script type="text/javascript" src="fc4sc/js/bin.js"></script>
+<script type="text/javascript" src="fc4sc/js/bin_cross.js"></script>
+<script type="text/javascript" src="fc4sc/js/cvp.js"></script>
+<script type="text/javascript" src="fc4sc/js/cross.js"></script>
+<script type="text/javascript" src="fc4sc/js/cg.js"></script>
+<script type="text/javascript" src="fc4sc/js/cg_type.js"></script>
+<script type="text/javascript">
+    function takeAction(node) {
+        switch (node.nodeName) {
+            case "ucis:coverpointBin":
+            case "UCIS:coverpointBin":
+            case "coverpointBin": {
+                if (node.getAttribute("type") !== "ignore") {
+                    global_bin_tree.push(new Bin(node));
+                }
+                return SizeEnum.RETURN;
+            }
+            case "ucis:crossBin":
+            case "UCIS:crossBin":
+            case "crossBin": {
+                if (node.getAttribute("type") !== "ignore") {
+                    cross_bins.push(new CrossBin(node));
+                }
+                return SizeEnum.RETURN;
+            }
+            case "ucis:cgInstance":
+            case "UCIS:cgInstance":
+            case "cgInstance": {
+                return SizeEnum.DEEPER;
+            }
+            default: {
+                return SizeEnum.DEEPER;
+            }
+        }
+    }
+
+    function nodeMarkup(node, where) {
+        var ret = SizeEnum.RETURN;
+
+        if (node.nodeType == 1) {
+            takeStartAction(node);
+            ret = takeAction(node);
+        }
+
+        if (ret == SizeEnum.DEEPER) {
+            for (var index = 0; index < node.childNodes.length; ++index) {
+                nodeMarkup(node.childNodes[index]);
+            }
+        }
+
+        if (node.nodeType == 1) takeEndAction(node, where);
+    }
+
+    function takeStartAction(node) {
+        switch (node.nodeName) {
+            case "ucis:cgInstance":
+            case "UCIS:cgInstance":
+            case "cgInstance": {
+                cg_inst_lines = 0;
+                cvp_procs = [];
+                cvp_weights = [];
+
+                break;
+            }
+            case "ucis:cross":
+            case "UCIS:cross":
+            case "cross": {
+                cg_inst_lines += 2;
+                break;
+            }
+            case "ucis:coverpoint":
+            case "UCIS:coverpoint":
+            case "coverpoint": {
+                cg_inst_lines += 1;
+                break;
+            }
+            default:
+                break;
+        }
+    }
+
+    function takeEndAction(node, where) {
+        switch (node.nodeName) {
+            case "ucis:cgInstance":
+            case "UCIS:cgInstance":
+            case "cgInstance": {
+                global_cvg_tree.push(
+                    new Cg(
+                        cvp_procs,
+                        cvp_weights,
+                        global_cvp_tree,
+                        cg_inst_lines,
+                        { node: node }
+                    )
+                );
+
+                global_cvp_tree = [];
+                global_bin_tree = [];
+                cross_bins = [];
+                cvp_map = new Map();
+
+                break;
+            }
+            case "ucis:cross":
+            case "UCIS:cross":
+            case "cross": {
+                var cross = new Cross(node, cross_bins);
+
+                cg_inst_lines += cross_bins.length;
+
+                cvp_weights.push(cross.cvp_weight);
+                cvp_procs.push(cross.cvp_procent);
+
+                global_cvp_tree.push(cross);
+
+                cross_bins = [];
+
+                break;
+            }
+            case "ucis:coverpoint":
+            case "UCIS:coverpoint":
+            case "coverpoint": {
+                var cvp = new Coverpoint(
+                    node,
+                    pass_bins,
+                    fail_bins,
+                    pass_ranges,
+                    fail_ranges,
+                    global_bin_tree
+                );
+
+                cvp_procs.push(cvp.cvp_procent);
+                cvp_weights.push(cvp.cvp_weight);
+                cg_inst_lines += pass_ranges + fail_ranges;
+
+                global_cvp_tree.push(cvp);
+
+                global_bin_tree = [];
+                pass_bins = 0;
+                fail_bins = 0;
+                pass_ranges = 0;
+                fail_ranges = 0;
+            }
+            default:
+                break;
+        }
+    }
+
+    function updateWindowText(covergroupTypes) {
+	    var toc_header = document.getElementById("toc_header");
+        var toc = document.getElementById("toc");
+        var main_content = document.getElementById("file-content");
+
+        toc_header.innerHTML = '<br><h4>Covergroup types</h4>\t\t <a href="#top">Back to top </a> ';
+        toc.innerHTML = "";
+        main_content.innerHTML = "";
+
+        for (var i = 0 ; i < covergroupTypes.length; ++i) {
+            main_content.innerHTML += covergroupTypes[i].stringify();
+            toc.innerHTML += covergroupTypes[i].toc_stringify() + "<br>";
+        }
+    }
+
+    function displayLoadedFileContents(contents) {
+        var parseXml = function(xmlStr) {
+            return new window.DOMParser().parseFromString(xmlStr, "text/xml");
+        };
+
+        var xmlFile = parseXml(contents);
+
+        for (var i = 0; i < global_buttons.length; ++i) {
+            global_buttons[i].checked = true;
+        }
+        global_cvg_type = []; // clear pervious data
+        var cgTypeElement = xmlFile.getElementsByTagNameNS("UCIS", "instanceCoverages");
+
+        for (var it = 0; it < cgTypeElement.length; ++it) {
+            var cgType = cgTypeElement[it];
+            global_cvg_tree = [];
+            nodeMarkup(cgType);
+            global_cvg_type.push(new CgType(cgType, global_cvg_tree));
+        }
+        updateWindowText(global_cvg_type);
+    }
+
+    function filter_global_cvg_types(show_full, show_partial, show_empty) {
+	    if (!show_full && !show_empty && !show_partial)
+            return [];
+        if (show_full && show_empty && show_partial)
+            return global_cvg_type;
+
+        var filteredCgTypes = []
+        for (var it1 = 0; it1 < global_cvg_type.length; ++it1) {
+            var type = global_cvg_type[it1];
+            var validCvgInstanceList = [];
+
+            for (var it2 = 0; it2 < type.cg_insts.length; ++it2) {
+                var cgInstance = type.cg_insts[it2];
+
+                if ((show_full && cgInstance.cvg_proc == 100) ||
+                    (show_empty && cgInstance.cvg_proc == 0.0) ||
+                    (show_partial && cgInstance.cvg_proc < 100 && cgInstance.cvg_proc > 0)) {
+                   validCvgInstanceList.push(cgInstance);
+                }
+            }
+            if (validCvgInstanceList.length > 0)
+                filteredCgTypes.push(new CgType(String(type.name), validCvgInstanceList));
+        }
+        return filteredCgTypes;
+    }
+
+    function button_change(index) {
+        if (global_cvg_type.length == 0) {
+            alert("No data loaded!");
+            for (var i = 0; i < global_buttons.length; ++i) {
+                global_buttons[i].checked = false;
+            }
+            return;
+        }
+        updateWindowText(filter_global_cvg_types(
+            global_buttons[0].checked,
+            global_buttons[1].checked,
+            global_buttons[2].checked
+        ));
+    }
+
+/*
+    function print_options(node) {
+        var name = node.attributes;
+        var result = "<table>";
+
+        for (var it = 0; it < node.attributes.length; ++it) {
+            result += "<tr>";
+            result += "<td>" + node.attributes[it].name + "</td>";
+            result += "<td>    </td>";
+            result += '<td>"' + node.attributes[it].value + '"</td>';
+            result += "</tr>";
+        }
+        return result + "</table>";
+    }
+*/
+</script>
+
+<script type="text/javascript">
+    var cross_bins = [];
+
+    var cvp_map = new Map();
+    var pass_bins = 0;
+    var fail_bins = 0;
+    var pass_ranges = 0;
+    var fail_ranges = 0;
+    var cvp_procent = 0;
+    var cvp_bin_count = 0;
+
+    var cvp_procs = [];
+    var cvp_weights = [];
+    var cg_inst_lines = 0;
+
+    var global_cvg_tree = [];
+    var global_cvp_tree = [];
+    var global_bin_tree = [];
+    var global_cvg_type = [];
+
+    var SizeEnum = {
+        DEEPER: 1,
+        RETURN: 2
+    };
+
+    var Covered = {
+        EXCLUDED: 1,
+        NOTHING: 2,
+        PARTIAL: 3,
+        COMPLETE: 4
+    };
+
+    var global_buttons = [
+        document.getElementById("show_full"),
+        document.getElementById("show_partial"),
+        document.getElementById("show_empty")
+    ];
+
+    function readSingleFile(arg) {
+        var file = arg.target.files[0];
+        if (!file) {
+            return;
+        }
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            var contents = e.target.result;
+            displayLoadedFileContents(contents);
+        };
+        reader.readAsText(file);
+    }
+
+    document
+        .getElementById("file-input")
+        .addEventListener("change", readSingleFile, false);
+</script>
+</body></html>

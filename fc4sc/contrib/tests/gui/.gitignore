@@ -1,0 +1,11 @@
+
+*/*.depend
+*/*.layout
+*/bin
+*/obj
+*/*.xml
+*/*.html
+*/build
+*/test_gui.log
+*/test_gui_out.txt
+

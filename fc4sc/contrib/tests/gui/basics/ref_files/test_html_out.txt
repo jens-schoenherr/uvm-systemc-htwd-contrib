@@ -1,0 +1,65 @@
+Generating xml files for coverage.
+Generating wo_cvp_coverage
+  0.000 % (complete covergroup)
+Generating uint8_cvp_coverage
+ 31.931 % (complete covergroup)
+ 50.000 % test_cvp1
+(    0 ) :    1
+(    1 ) :    0
+(    2 ) :    1
+(    3 ) :    0
+ 80.000 % test_cvp2
+(    0 ) :    0
+(    1 ) :    1
+(    2 ) :    8
+(    3 ) :    8
+(    4 ) :    8
+  0.000 % test_cvp3
+ 57.143 % interval_cvp
+(    0 ) :    1
+(    1 ) :    1
+(    2 ) :    1
+(    3 ) :    8
+(    4 ) :    0
+(    5 ) :    0
+(    6 ) :    0
+ 22.222 % cvp1_cvp2_cr
+( cvp2  cvp1   )
+(   2   1  ) :    1
+(   2   2  ) :    1
+  7.143 % test_interval_cr
+( interval_cvp  test_cvp1   )
+(   0   0  ) :    1
+(   1   2  ) :    1
+  0.000 % four_cr
+( interval_cvp  test_cvp1  cvp2  cvp1   )
+ 31.931 % (complete covergroup)
+Generating char_cvp_coverage
+ 29.167 % (complete covergroup)
+ 50.000 % test_cvp
+(    0 ) :    5
+(    1 ) :    1
+(    2 ) :    0
+(    3 ) :    0
+ 50.000 % interval_cvp
+(    0 ) :    5
+(    1 ) :    1
+(    2 ) :    0
+(    3 ) :    4
+(    4 ) :    0
+(    5 ) :    0
+  0.000 % cvp1
+(    0 ) :    0
+(    1 ) :    0
+(    2 ) :    0
+ 66.667 % cvp2
+(    0 ) :    1
+(    1 ) :    0
+(    2 ) :    2
+  0.000 % cvp1_cvp2_cr
+( cvp2  cvp1   )
+  8.333 % test_interval_cr
+( interval_cvp  test_cvp   )
+(   0   0  ) :    5
+(   1   1  ) :    1
+ 29.167 % (complete covergroup)
