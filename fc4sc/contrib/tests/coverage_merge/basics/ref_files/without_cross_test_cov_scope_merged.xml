@@ -4,13 +4,13 @@
 <UCIS:historyNodes historyNodeId="200" parentId="200" logicalName="string" physicalName="string" testStatus="true" date="*" userName="*" toolCategory="string" ucisVersion="1.0" vendorId="string" vendorTool="string" vendorToolVersion="string">
 </UCIS:historyNodes>
 <UCIS:instanceCoverages name="default_scope_module" moduleName="scope_traffic_light_test_cvp" key="1" instanceId="2">
-<UCIS:id file="1" line="17" inlineCount="1" />
+<UCIS:id file="1" line="37" inlineCount="1" />
 <UCIS:covergroupCoverage weight="1">
 <UCIS:cgInstance name="traffic_light_test_cvp" key="2" excluded="false">
 <UCIS:options weight="1" goal="100" comment="" at_least="1" auto_bin_max="10" detect_overlap="0" cross_num_print_missing="0" per_instance="false" />
 <UCIS:cgId cgName="traffic_light_test_cvp_coverage" moduleName="scope_traffic_light_test_cvp">
-<UCIS:cginstSourceId file="1" line="21" inlineCount="1" />
-<UCIS:cgSourceId file="1" line="27" inlineCount="1" />
+<UCIS:cginstSourceId file="1" line="41" inlineCount="1" />
+<UCIS:cgSourceId file="1" line="47" inlineCount="1" />
 </UCIS:cgId>
 <UCIS:coverpoint name="cvp_north" key="3" exprString="north_light">
 <UCIS:options weight="1" goal="100" comment="" at_least="1" auto_bin_max="10" detect_overlap="0" />
