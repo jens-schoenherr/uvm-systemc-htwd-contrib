@@ -96,41 +96,40 @@ contrib/tests/gui/basics/ref_files/wo_cvp_coverage_compact_3.html \
 contrib/tests/gui/basics/ref_files/wo_cvp_coverage_full_1.html \
 contrib/tests/gui/basics/ref_files/wo_cvp_coverage_partial_2.html \
 contrib/tests/gui/basics/ref_files/wo_cvp_coverage.xml.html \
-contrib/tests/coverage_merge/.gitignore
-contrib/tests/coverage_merge/test_merge.sh
-contrib/tests/coverage_merge/basics/
-contrib/tests/coverage_merge/basics/bool_cvp.cpp
-contrib/tests/coverage_merge/basics/bool_cvp.h
-contrib/tests/coverage_merge/basics/bool_uint8_cvp.cpp
-contrib/tests/coverage_merge/basics/bool_uint8_cvp.h
-contrib/tests/coverage_merge/basics/char_cvp.cpp
-contrib/tests/coverage_merge/basics/char_cvp.h
-contrib/tests/coverage_merge/basics/CMakeLists.txt
-contrib/tests/coverage_merge/basics/cross_without_bin_cvp.cpp
-contrib/tests/coverage_merge/basics/cross_without_bin_cvp.h
-contrib/tests/coverage_merge/basics/int_cvp.cpp
-contrib/tests/coverage_merge/basics/int_cvp.h
-contrib/tests/coverage_merge/basics/merge_test_basics.cpp
-contrib/tests/coverage_merge/basics/several_data_types_cvp.cpp
-contrib/tests/coverage_merge/basics/several_data_types_cvp.h
-contrib/tests/coverage_merge/basics/uint32_cvp.cpp
-contrib/tests/coverage_merge/basics/uint32_cvp.h
-contrib/tests/coverage_merge/basics/uint8_cvp.cpp
-contrib/tests/coverage_merge/basics/uint8_cvp.h
-contrib/tests/coverage_merge/basics/without_cross_test_cvp.cpp
-contrib/tests/coverage_merge/basics/without_cross_test_cvp.h
-contrib/tests/coverage_merge/basics/wo_cvp.cpp
-contrib/tests/coverage_merge/basics/wo_cvp.h
-contrib/tests/coverage_merge/basics/xml_file_compare.cpp
-contrib/tests/coverage_merge/basics/ref_files/bool_cov_scope_merged.xml
-contrib/tests/coverage_merge/basics/ref_files/bool_uint8_cov_scope_merged.xml
-contrib/tests/coverage_merge/basics/ref_files/char_cov_scope_merged.xml
-contrib/tests/coverage_merge/basics/ref_files/cross_without_bin_cov_scope_merged.xml
-contrib/tests/coverage_merge/basics/ref_files/int_cov_scope_merged.xml
-contrib/tests/coverage_merge/basics/ref_files/several_data_types_cov_scope_merged.xml
-contrib/tests/coverage_merge/basics/ref_files/uint32_cov_scope_merged.xml
-contrib/tests/coverage_merge/basics/ref_files/uint8_cov_scope_merged.xml
-contrib/tests/coverage_merge/basics/ref_files/without_cross_test_cov_scope_merged.xml
+contrib/tests/coverage_merge/.gitignore \
+contrib/tests/coverage_merge/test_merge.sh \
+contrib/tests/coverage_merge/basics/bool_cvp.cpp \
+contrib/tests/coverage_merge/basics/bool_cvp.h \
+contrib/tests/coverage_merge/basics/bool_uint8_cvp.cpp \
+contrib/tests/coverage_merge/basics/bool_uint8_cvp.h \
+contrib/tests/coverage_merge/basics/char_cvp.cpp \
+contrib/tests/coverage_merge/basics/char_cvp.h \
+contrib/tests/coverage_merge/basics/CMakeLists.txt \
+contrib/tests/coverage_merge/basics/cross_without_bin_cvp.cpp \
+contrib/tests/coverage_merge/basics/cross_without_bin_cvp.h \
+contrib/tests/coverage_merge/basics/int_cvp.cpp \
+contrib/tests/coverage_merge/basics/int_cvp.h \
+contrib/tests/coverage_merge/basics/merge_test_basics.cpp \
+contrib/tests/coverage_merge/basics/several_data_types_cvp.cpp \
+contrib/tests/coverage_merge/basics/several_data_types_cvp.h \
+contrib/tests/coverage_merge/basics/uint32_cvp.cpp \
+contrib/tests/coverage_merge/basics/uint32_cvp.h \
+contrib/tests/coverage_merge/basics/uint8_cvp.cpp \
+contrib/tests/coverage_merge/basics/uint8_cvp.h \
+contrib/tests/coverage_merge/basics/without_cross_test_cvp.cpp \
+contrib/tests/coverage_merge/basics/without_cross_test_cvp.h \
+contrib/tests/coverage_merge/basics/wo_cvp.cpp \
+contrib/tests/coverage_merge/basics/wo_cvp.h \
+contrib/tests/coverage_merge/basics/xml_file_compare.cpp \
+contrib/tests/coverage_merge/basics/ref_files/bool_cov_scope_merged.xml \
+contrib/tests/coverage_merge/basics/ref_files/bool_uint8_cov_scope_merged.xml \
+contrib/tests/coverage_merge/basics/ref_files/char_cov_scope_merged.xml \
+contrib/tests/coverage_merge/basics/ref_files/cross_without_bin_cov_scope_merged.xml \
+contrib/tests/coverage_merge/basics/ref_files/int_cov_scope_merged.xml \
+contrib/tests/coverage_merge/basics/ref_files/several_data_types_cov_scope_merged.xml \
+contrib/tests/coverage_merge/basics/ref_files/uint32_cov_scope_merged.xml \
+contrib/tests/coverage_merge/basics/ref_files/uint8_cov_scope_merged.xml \
+contrib/tests/coverage_merge/basics/ref_files/without_cross_test_cov_scope_merged.xml \
 "
 
 for file in $add_files; do
