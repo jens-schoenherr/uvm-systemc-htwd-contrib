@@ -1,0 +1,178 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<UCIS:UCIS xmlns:UCIS="UCIS" ucisVersion="1.0" writtenBy="*" writtenTime="*">
+<UCIS:sourceFiles fileName="*" id="1" />
+<UCIS:historyNodes historyNodeId="200" parentId="200" logicalName="string" physicalName="string" testStatus="true" date="*" userName="*" toolCategory="string" ucisVersion="1.0" vendorId="string" vendorTool="string" vendorToolVersion="string">
+</UCIS:historyNodes>
+<UCIS:instanceCoverages name="default_scope_module" moduleName="scope_char_cvp" key="1" instanceId="2">
+<UCIS:id file="1" line="14" inlineCount="1" />
+<UCIS:covergroupCoverage weight="1">
+<UCIS:cgInstance name="char_cvp" key="2" excluded="false">
+<UCIS:options weight="1" goal="100" comment="" at_least="1" auto_bin_max="10" detect_overlap="0" cross_num_print_missing="0" per_instance="false" />
+<UCIS:cgId cgName="char_cvp_coverage" moduleName="scope_char_cvp">
+<UCIS:cginstSourceId file="1" line="18" inlineCount="1" />
+<UCIS:cgSourceId file="1" line="23" inlineCount="1" />
+</UCIS:cgId>
+<UCIS:coverpoint name="test_cvp" key="3" exprString="mode_char">
+<UCIS:options weight="1" goal="100" comment="" at_least="1" auto_bin_max="10" detect_overlap="0" />
+<UCIS:coverpointBin name="char_A" key="4" type="default">
+<UCIS:range from="65" to="65">
+<UCIS:contents coverageCount="3" />
+</UCIS:range>
+
+</UCIS:coverpointBin>
+<UCIS:coverpointBin name="char_B" key="5" type="default">
+<UCIS:range from="66" to="66">
+<UCIS:contents coverageCount="1" />
+</UCIS:range>
+
+</UCIS:coverpointBin>
+<UCIS:coverpointBin name="char_C" key="6" type="default">
+<UCIS:range from="67" to="67">
+<UCIS:contents coverageCount="0" />
+</UCIS:range>
+
+</UCIS:coverpointBin>
+</UCIS:coverpoint>
+
+<UCIS:coverpoint name="test_cvp_new" key="7" exprString="mode_char_new">
+<UCIS:options weight="1" goal="100" comment="" at_least="1" auto_bin_max="10" detect_overlap="0" />
+<UCIS:coverpointBin name="char_a" key="8" type="default">
+<UCIS:range from="97" to="97">
+<UCIS:contents coverageCount="2" />
+</UCIS:range>
+
+</UCIS:coverpointBin>
+<UCIS:coverpointBin name="char_b" key="9" type="default">
+<UCIS:range from="98" to="98">
+<UCIS:contents coverageCount="1" />
+</UCIS:range>
+
+</UCIS:coverpointBin>
+<UCIS:coverpointBin name="char_c" key="10" type="default">
+<UCIS:range from="99" to="99">
+<UCIS:contents coverageCount="1" />
+</UCIS:range>
+
+</UCIS:coverpointBin>
+</UCIS:coverpoint>
+
+<UCIS:coverpoint name="intervall_cvp" key="11" exprString="mode_char_intervall">
+<UCIS:options weight="1" goal="100" comment="" at_least="1" auto_bin_max="10" detect_overlap="0" />
+<UCIS:coverpointBin name="digits" key="12" type="default">
+<UCIS:range from="48" to="57">
+<UCIS:contents coverageCount="2" />
+</UCIS:range>
+
+</UCIS:coverpointBin>
+<UCIS:coverpointBin name="lowercase_letters ([1]a-i, [2]j-r, [3]s-z) - [0]" key="13" type="default">
+<UCIS:range from="97" to="105">
+<UCIS:contents coverageCount="0" />
+</UCIS:range>
+
+</UCIS:coverpointBin>
+<UCIS:coverpointBin name="lowercase_letters ([1]a-i, [2]j-r, [3]s-z) - [1]" key="14" type="default">
+<UCIS:range from="106" to="114">
+<UCIS:contents coverageCount="0" />
+</UCIS:range>
+
+</UCIS:coverpointBin>
+<UCIS:coverpointBin name="lowercase_letters ([1]a-i, [2]j-r, [3]s-z) - [2]" key="15" type="default">
+<UCIS:range from="115" to="122">
+<UCIS:contents coverageCount="1" />
+</UCIS:range>
+
+</UCIS:coverpointBin>
+<UCIS:coverpointBin name="illegal_null" key="16" type="illegal">
+<UCIS:range from="0" to="0">
+<UCIS:contents coverageCount="0" />
+</UCIS:range>
+
+</UCIS:coverpointBin>
+<UCIS:coverpointBin name="ignore_space" key="17" type="ignore">
+<UCIS:range from="32" to="32">
+<UCIS:contents coverageCount="1" />
+</UCIS:range>
+
+</UCIS:coverpointBin>
+</UCIS:coverpoint>
+
+<UCIS:coverpoint name="cvp1" key="18" exprString="v1_char">
+<UCIS:options weight="1" goal="100" comment="" at_least="1" auto_bin_max="10" detect_overlap="0" />
+<UCIS:coverpointBin name="val_X" key="19" type="default">
+<UCIS:range from="88" to="88">
+<UCIS:contents coverageCount="2" />
+</UCIS:range>
+
+</UCIS:coverpointBin>
+<UCIS:coverpointBin name="val_Y" key="20" type="default">
+<UCIS:range from="89" to="89">
+<UCIS:contents coverageCount="2" />
+</UCIS:range>
+
+</UCIS:coverpointBin>
+</UCIS:coverpoint>
+
+<UCIS:coverpoint name="cvp2" key="21" exprString="v2_char">
+<UCIS:options weight="1" goal="100" comment="" at_least="1" auto_bin_max="10" detect_overlap="0" />
+<UCIS:coverpointBin name="val_X" key="22" type="default">
+<UCIS:range from="88" to="88">
+<UCIS:contents coverageCount="2" />
+</UCIS:range>
+
+</UCIS:coverpointBin>
+<UCIS:coverpointBin name="val_Y" key="23" type="default">
+<UCIS:range from="89" to="89">
+<UCIS:contents coverageCount="2" />
+</UCIS:range>
+
+</UCIS:coverpointBin>
+</UCIS:coverpoint>
+
+<UCIS:cross name="cvp1_cvp2_cr" key="24">
+<UCIS:options weight="1" goal="100" comment="" at_least="1" cross_num_print_missing="0" />
+<UCIS:crossExpr>cvp2</UCIS:crossExpr> 
+<UCIS:crossExpr>cvp1</UCIS:crossExpr> 
+<UCIS:crossBin name="" key="0" type="default">
+<UCIS:index>0</UCIS:index>
+<UCIS:index>0</UCIS:index>
+<UCIS:contents coverageCount="1" />
+</UCIS:crossBin><UCIS:crossBin name="" key="0" type="default">
+<UCIS:index>0</UCIS:index>
+<UCIS:index>1</UCIS:index>
+<UCIS:contents coverageCount="1" />
+</UCIS:crossBin><UCIS:crossBin name="" key="0" type="default">
+<UCIS:index>1</UCIS:index>
+<UCIS:index>0</UCIS:index>
+<UCIS:contents coverageCount="1" />
+</UCIS:crossBin><UCIS:crossBin name="" key="0" type="default">
+<UCIS:index>1</UCIS:index>
+<UCIS:index>1</UCIS:index>
+<UCIS:contents coverageCount="1" />
+</UCIS:crossBin></UCIS:cross>
+<UCIS:cross name="test_intervall_cr" key="27">
+<UCIS:options weight="1" goal="100" comment="" at_least="1" cross_num_print_missing="0" />
+<UCIS:crossExpr>intervall_cvp</UCIS:crossExpr> 
+<UCIS:crossExpr>test_cvp_new</UCIS:crossExpr> 
+<UCIS:crossExpr>test_cvp</UCIS:crossExpr> 
+<UCIS:crossBin name="" key="0" type="default">
+<UCIS:index>0</UCIS:index>
+<UCIS:index>0</UCIS:index>
+<UCIS:index>0</UCIS:index>
+<UCIS:contents coverageCount="1" />
+</UCIS:crossBin><UCIS:crossBin name="" key="0" type="default">
+<UCIS:index>0</UCIS:index>
+<UCIS:index>2</UCIS:index>
+<UCIS:index>1</UCIS:index>
+<UCIS:contents coverageCount="1" />
+</UCIS:crossBin><UCIS:crossBin name="" key="0" type="default">
+<UCIS:index>3</UCIS:index>
+<UCIS:index>1</UCIS:index>
+<UCIS:index>0</UCIS:index>
+<UCIS:contents coverageCount="1" />
+</UCIS:crossBin></UCIS:cross>
+
+
+</UCIS:cgInstance>
+</UCIS:covergroupCoverage>
+</UCIS:instanceCoverages>
+</UCIS:UCIS>

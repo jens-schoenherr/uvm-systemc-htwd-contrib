@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<UCIS:UCIS xmlns:UCIS="UCIS" ucisVersion="1.0" writtenBy="*" writtenTime="*">
+<UCIS:sourceFiles fileName="*" id="1" />
+<UCIS:historyNodes historyNodeId="200" parentId="200" logicalName="string" physicalName="string" testStatus="true" date="*" userName="*" toolCategory="string" ucisVersion="1.0" vendorId="string" vendorTool="string" vendorToolVersion="string">
+</UCIS:historyNodes>
+<UCIS:instanceCoverages name="default_scope_module" moduleName="scope_traffic_light_test_cvp" key="1" instanceId="2">
+<UCIS:id file="1" line="17" inlineCount="1" />
+<UCIS:covergroupCoverage weight="1">
+<UCIS:cgInstance name="traffic_light_test_cvp" key="2" excluded="false">
+<UCIS:options weight="1" goal="100" comment="" at_least="1" auto_bin_max="10" detect_overlap="0" cross_num_print_missing="0" per_instance="false" />
+<UCIS:cgId cgName="traffic_light_test_cvp_coverage" moduleName="scope_traffic_light_test_cvp">
+<UCIS:cginstSourceId file="1" line="21" inlineCount="1" />
+<UCIS:cgSourceId file="1" line="27" inlineCount="1" />
+</UCIS:cgId>
+<UCIS:coverpoint name="cvp_north" key="3" exprString="north_light">
+<UCIS:options weight="1" goal="100" comment="" at_least="1" auto_bin_max="10" detect_overlap="0" />
+<UCIS:coverpointBin name="red" key="4" type="default">
+<UCIS:range from="0" to="0">
+<UCIS:contents coverageCount="3" />
+</UCIS:range>
+
+</UCIS:coverpointBin>
+<UCIS:coverpointBin name="yellow" key="5" type="default">
+<UCIS:range from="1" to="1">
+<UCIS:contents coverageCount="0" />
+</UCIS:range>
+
+</UCIS:coverpointBin>
+<UCIS:coverpointBin name="green" key="6" type="default">
+<UCIS:range from="2" to="2">
+<UCIS:contents coverageCount="1" />
+</UCIS:range>
+
+</UCIS:coverpointBin>
+<UCIS:coverpointBin name="fault signal" key="7" type="default">
+<UCIS:range from="3" to="3">
+<UCIS:contents coverageCount="0" />
+</UCIS:range>
+
+</UCIS:coverpointBin>
+</UCIS:coverpoint>
+
+<UCIS:coverpoint name="cvp_south" key="8" exprString="south_light">
+<UCIS:options weight="1" goal="100" comment="" at_least="1" auto_bin_max="10" detect_overlap="0" />
+<UCIS:coverpointBin name="red" key="9" type="default">
+<UCIS:range from="0" to="0">
+<UCIS:contents coverageCount="3" />
+</UCIS:range>
+
+</UCIS:coverpointBin>
+<UCIS:coverpointBin name="yellow" key="10" type="default">
+<UCIS:range from="1" to="1">
+<UCIS:contents coverageCount="0" />
+</UCIS:range>
+
+</UCIS:coverpointBin>
+<UCIS:coverpointBin name="green" key="11" type="default">
+<UCIS:range from="2" to="2">
+<UCIS:contents coverageCount="1" />
+</UCIS:range>
+
+</UCIS:coverpointBin>
+</UCIS:coverpoint>
+
+<UCIS:coverpoint name="cvp_east" key="12" exprString="east_light">
+<UCIS:options weight="1" goal="100" comment="" at_least="1" auto_bin_max="10" detect_overlap="0" />
+<UCIS:coverpointBin name="red" key="13" type="default">
+<UCIS:range from="0" to="0">
+<UCIS:contents coverageCount="3" />
+</UCIS:range>
+
+</UCIS:coverpointBin>
+<UCIS:coverpointBin name="yellow" key="14" type="default">
+<UCIS:range from="1" to="1">
+<UCIS:contents coverageCount="0" />
+</UCIS:range>
+
+</UCIS:coverpointBin>
+<UCIS:coverpointBin name="green" key="15" type="default">
+<UCIS:range from="2" to="2">
+<UCIS:contents coverageCount="1" />
+</UCIS:range>
+
+</UCIS:coverpointBin>
+</UCIS:coverpoint>
+
+
+
+</UCIS:cgInstance>
+</UCIS:covergroupCoverage>
+</UCIS:instanceCoverages>
+</UCIS:UCIS>
