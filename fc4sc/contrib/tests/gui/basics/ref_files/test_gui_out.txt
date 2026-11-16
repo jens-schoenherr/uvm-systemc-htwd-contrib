@@ -15,6 +15,7 @@ Generating uint8_cvp_coverage
 (    3 ) :    8
 (    4 ) :    8
   0.000 % test_cvp3
+  0.000 % test_cvp4
  57.143 % interval_cvp
 (    0 ) :    1
 (    1 ) :    1
@@ -23,6 +24,24 @@ Generating uint8_cvp_coverage
 (    4 ) :    0
 (    5 ) :    0
 (    6 ) :    0
+ 33.333 % array_cvp
+(    0 ) :    2
+(    1 ) :    0
+(    2 ) :    1
+(    3 ) :    8
+(    4 ) :    0
+(    5 ) :    0
+(    6 ) :    0
+(    7 ) :    0
+(    8 ) :    0
+ 66.667 % cvp1
+(    0 ) :    0
+(    1 ) :    1
+(    2 ) :    2
+ 66.667 % cvp2
+(    0 ) :    1
+(    1 ) :    0
+(    2 ) :    2
  22.222 % cvp1_cvp2_cr
 ( cvp2  cvp1   )
 (   2   1  ) :    1
@@ -33,6 +52,8 @@ Generating uint8_cvp_coverage
 (   1   2  ) :    1
   0.000 % four_cr
 ( interval_cvp  test_cvp1  cvp2  cvp1   )
+  0.000 % cvp3_cvp4_empty_cr
+( test_cvp4  test_cvp3   )
  31.931 % (complete covergroup)
 Generating char_cvp_coverage
  29.167 % (complete covergroup)
