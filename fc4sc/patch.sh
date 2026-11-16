@@ -81,7 +81,7 @@ contrib/tests/gui/basics/uint8_cvp.cpp \
 contrib/tests/gui/basics/uint8_cvp.h \
 contrib/tests/gui/basics/wo_cvp.cpp \
 contrib/tests/gui/basics/wo_cvp.h \
-contrib/tests/gui/basics/ref_files/test_html_out.txt \
+contrib/tests/gui/basics/ref_files/test_gui_out.txt \
 contrib/tests/gui/basics/ref_files/char_cvp_coverage_compact_3.html \
 contrib/tests/gui/basics/ref_files/char_cvp_coverage_full_1.html \
 contrib/tests/gui/basics/ref_files/char_cvp_coverage_partial_2.html \
