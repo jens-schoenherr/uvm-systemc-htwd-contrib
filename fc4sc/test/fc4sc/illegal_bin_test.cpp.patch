@@ -1,0 +1,16 @@
+--- 
++++ 
+@@ -55,9 +55,9 @@
+ 
+   cvg.sample(1);
+   EXPECT_EQ(cvg.get_inst_coverage(), 100);
+-  
+-  ASSERT_ANY_THROW(cvg.sample(2));	
+-  
++
++  ASSERT_ANY_THROW(cvg.sample(2));
++
+   EXPECT_EQ(cvg.get_inst_coverage(), 100);
+-  fc4sc::global::delete_context(cntxt);  
++  fc4sc::global::delete_context(cntxt);
+ }

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<UCIS xmlns="UCIS" xmlns:ucis="http://www.w3.org/2001/XMLSchema-instance" ucisVersion="1.0"  writtenBy="*"
+ writtenTime="*">
+<sourceFiles  fileName="" id="3" />
+<sourceFiles  fileName="scope_test.cpp" id="1" />
+<historyNodes historyNodeId="200" 
+parentId="200" 
+logicalName="string" 
+physicalName="string" 
+testStatus="true" 
+date="*" 
+userName="*" 
+toolCategory="string" 
+ucisVersion="1.0" 
+vendorId="string" 
+vendorTool="string" 
+vendorToolVersion="string" 
+>
+</historyNodes>
+<instanceCoverages name="top_inst" 
+moduleName="top_type" 
+key="1" 
+instanceId="2" 
+>
+<id file="3" line="1" inlineCount="1" />
+</instanceCoverages>
+<instanceCoverages name="child2a" 
+moduleName="sub_type2" 
+key="2" 
+instanceId="5" 
+parentInstanceId="2" 
+>
+<id file="3" line="1" inlineCount="1" />
+<covergroupCoverage weight="1" >
+<cgInstance name="cvg" 
+key="3" 
+excluded="false" 
+>
+<options weight="1" goal="100" comment="" at_least="1" auto_bin_max="10" detect_overlap="0" cross_num_print_missing="0" per_instance="false" />
+<cgId cgName="cvg_type" moduleName="sub_type2">
+<cginstSourceId file="3" line="1" inlineCount="1"/>
+<cgSourceId file="3" line="1" inlineCount="1"/>
+</cgId>
+<coverpoint name="x" key="4" exprString="dynamic sample">
+<options weight="1" goal="100" comment="" at_least="1" auto_bin_max="10" detect_overlap="0" />
+<coverpointBin name="ZERO" 
+key="5" 
+type="default" >
+<range 
+from="0" 
+to ="0"
+>
+<contents coverageCount="1"></contents>
+</range>
+
+</coverpointBin>
+</coverpoint>
+
+
+
+</cgInstance>
+</covergroupCoverage>
+</instanceCoverages>
+<instanceCoverages name="child2b" 
+moduleName="sub_type2" 
+key="6" 
+instanceId="6" 
+parentInstanceId="2" 
+>
+<id file="3" line="1" inlineCount="1" />
+<userAttr key="cvg_type" 
+type="str"
+len="8"
+>
+cvg_type</userAttr>
+</instanceCoverages>
+<instanceCoverages name="child1" 
+moduleName="top_type::sub_type1" 
+key="7" 
+instanceId="4" 
+parentInstanceId="2" 
+>
+<id file="3" line="1" inlineCount="1" />
+</instanceCoverages>
+</UCIS>

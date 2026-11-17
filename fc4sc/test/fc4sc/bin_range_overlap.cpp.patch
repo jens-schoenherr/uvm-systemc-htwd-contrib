@@ -1,0 +1,192 @@
+--- 
++++ 
+@@ -17,6 +17,7 @@
+ ******************************************************************************/
+ #include "fc4sc.hpp"
+ #include "gtest/gtest.h"
++#include "xml_compare.h"
+ 
+ class cvg : public covergroup {
+ public:
+@@ -44,8 +45,107 @@
+   cg.sample_point = 9;
+   cg.sample();
+   EXPECT_EQ(cg.get_inst_coverage(),100);
+-  xml_printer::coverage_save("bin_overlap_" + std::string(::testing::UnitTest::GetInstance()->current_test_info()->name()) + ".xml",cntxt);
++
++  // check bins
++  fc4sc::cvg_base_data_model *cgb = cg.get_cvg_data();
++  EXPECT_EQ(cgb->cvps.size(), 1u);
++  fc4sc::cvp_base_data_model *cpb = cgb->cvps[0];
++  fc4sc::coverpoint_data_model *cpt = dynamic_cast<fc4sc::coverpoint_data_model *>(cpb);
++  if (cpt != nullptr)
++  {
++    EXPECT_EQ(cpt->bins_data.size(), 1u);
++    fc4sc::bin_base_data_model *bn = cpt->bins_data[0];
++    EXPECT_NE(bn, nullptr);
++    if (bn != nullptr)
++    {
++      std::vector<fc4sc::interval_t<int>> intervals = bn->get_intervals_to_int();
++      EXPECT_EQ(intervals.size(), 3u);
++      EXPECT_EQ(intervals[0].first,   1);
++      EXPECT_EQ(intervals[0].second,  1);
++      EXPECT_EQ(intervals[1].first,   2);
++      EXPECT_EQ(intervals[1].second,  7);
++      EXPECT_EQ(intervals[2].first,   8);
++      EXPECT_EQ(intervals[2].second, 15);
++      std::vector<uint64_t> hits = bn->get_interval_hits();
++      EXPECT_EQ(hits.size(), 3u);
++      EXPECT_EQ(hits[0], 0u);
++      EXPECT_EQ(hits[1], 1u);
++      EXPECT_EQ(hits[2], 1u);
++    }
++  }
++  else
++  {
++     EXPECT_NE(cpt, nullptr);
++  }
++
++  std::string xml_name = "bin_overlap_" + std::string(::testing::UnitTest::GetInstance()->current_test_info()->name()) + ".xml";
++  xml_printer::coverage_save(xml_name, cntxt);
++  fc4sc::global::delete_context(cntxt);
++  bool xml_equal = xml_compare::compare("ref_files/"+xml_name, xml_name);
++  EXPECT_TRUE(xml_equal);
++}
++
++class cvg2 : public covergroup {
++public:
++  CG_CONS(cvg2) { }
++
++  int sample_point = 0;
++
++  COVERPOINT(int, cvp, sample_point) {
++    bin<int> ("overlapping_bin",
++    11,
++    interval(12, 15),
++    interval(13, 17),
++    16)
++  };
++};
++
++TEST(bin_overlap,signed_integer_2) {
++
++  auto cntxt = fc4sc::global::create_new_context();
++
++  cvg2 cg("cg",__FILE__,__LINE__,cntxt);
++  EXPECT_EQ(cg.get_inst_coverage(),0);
++  cg.sample_point = 11;
++  cg.sample();
++  cg.sample_point = 17;
++  cg.sample();
++  EXPECT_EQ(cg.get_inst_coverage(),100);
++
++  // check bins
++  fc4sc::cvg_base_data_model *cgb = cg.get_cvg_data();
++  EXPECT_EQ(cgb->cvps.size(), 1u);
++  fc4sc::cvp_base_data_model *cpb = cgb->cvps[0];
++  fc4sc::coverpoint_data_model *cpt = dynamic_cast<fc4sc::coverpoint_data_model *>(cpb);
++  if (cpt != nullptr)
++  {
++    EXPECT_EQ(cpt->bins_data.size(), 1u);
++    fc4sc::bin_base_data_model *bn = cpt->bins_data[0];
++    EXPECT_NE(bn, nullptr);
++    if (bn != nullptr)
++    {
++      std::vector<fc4sc::interval_t<int>> intervals = bn->get_intervals_to_int();
++      EXPECT_EQ(intervals.size(), 2u);
++      EXPECT_EQ(intervals[0].first,  11);
++      EXPECT_EQ(intervals[0].second, 11);
++      EXPECT_EQ(intervals[1].first,  12);
++      EXPECT_EQ(intervals[1].second, 17);
++      std::vector<uint64_t> hits = bn->get_interval_hits();
++      EXPECT_EQ(hits.size(), 2u);
++      EXPECT_EQ(hits[0], 1u);
++      EXPECT_EQ(hits[1], 1u);
++    }
++  }
++  else
++  {
++     EXPECT_NE(cpt, nullptr);
++  }
++
++  std::string xml_name = "bin_overlap_" + std::string(::testing::UnitTest::GetInstance()->current_test_info()->name()) + ".xml";
++  xml_printer::coverage_save(xml_name, cntxt);
+   fc4sc::global::delete_context(cntxt);
++  bool xml_equal = xml_compare::compare("ref_files/"+xml_name, xml_name);
++  EXPECT_TRUE(xml_equal);
+ }
+ 
+ class slice_test : public covergroup {
+@@ -75,51 +175,54 @@
+   cvg.val = 1;
+   cvg.sample();
+ 
+-  EXPECT_EQ(bins[0]->interval_hits()[0],1);
++  EXPECT_EQ(bins[0]->interval_hits()[0],1u);
+   EXPECT_EQ(cvg.get_inst_coverage(),25);
+ 
+   cvg.val = 6;
+   cvg.sample();
+ 
+-  EXPECT_EQ(bins[1]->interval_hits()[0],1);
++  EXPECT_EQ(bins[1]->interval_hits()[0],1u);
+   EXPECT_EQ(cvg.get_inst_coverage(),50);
+ 
+   cvg.val = 7;
+   cvg.sample();
+ 
+-  EXPECT_EQ(bins[0]->interval_hits()[1],1);
+-  EXPECT_EQ(bins[0]->get_hitcount(),2);
+-  EXPECT_EQ(bins[1]->interval_hits()[0],2);
++  EXPECT_EQ(bins[0]->interval_hits()[1],1u);
++  EXPECT_EQ(bins[0]->get_hitcount(),2u);
++  EXPECT_EQ(bins[1]->interval_hits()[0],2u);
+   EXPECT_EQ(cvg.get_inst_coverage(),50);
+ 
+   cvg.val = 9;
+   cvg.sample();
+ 
+-  EXPECT_EQ(bins[0]->interval_hits()[1],2);
+-  EXPECT_EQ(bins[2]->interval_hits()[0],1);
+-  EXPECT_EQ(bins[3]->interval_hits()[0],1);
++  EXPECT_EQ(bins[0]->interval_hits()[1],2u);
++  EXPECT_EQ(bins[2]->interval_hits()[0],1u);
++  EXPECT_EQ(bins[3]->interval_hits()[0],1u);
+   EXPECT_EQ(cvg.get_inst_coverage(),100);
+ 
+ 
+   cvg.val = 8;
+   cvg.sample();
+ 
+-  EXPECT_EQ(bins[0]->interval_hits()[1],3);
+-  EXPECT_EQ(bins[1]->interval_hits()[0],3);
+-  EXPECT_EQ(bins[2]->interval_hits()[0],2);
+-  EXPECT_EQ(bins[3]->interval_hits()[0],1);
++  EXPECT_EQ(bins[0]->interval_hits()[1],3u);
++  EXPECT_EQ(bins[1]->interval_hits()[0],3u);
++  EXPECT_EQ(bins[2]->interval_hits()[0],2u);
++  EXPECT_EQ(bins[3]->interval_hits()[0],1u);
+   EXPECT_EQ(cvg.get_inst_coverage(),100);
+ 
+   cvg.val = 10;
+   cvg.sample();
+ 
+-  EXPECT_EQ(bins[0]->interval_hits()[1],3);
+-  EXPECT_EQ(bins[1]->interval_hits()[0],3);
+-  EXPECT_EQ(bins[2]->interval_hits()[0],2);
+-  EXPECT_EQ(bins[3]->interval_hits()[0],2);
++  EXPECT_EQ(bins[0]->interval_hits()[1],3u);
++  EXPECT_EQ(bins[1]->interval_hits()[0],3u);
++  EXPECT_EQ(bins[2]->interval_hits()[0],2u);
++  EXPECT_EQ(bins[3]->interval_hits()[0],2u);
+   EXPECT_EQ(cvg.get_inst_coverage(),100);
+- 
+-  xml_printer::coverage_save("sample_" + std::string(::testing::UnitTest::GetInstance()->current_test_info()->name()) + ".xml",cntxt);
++
++  std::string xml_name = "sample_" + std::string(::testing::UnitTest::GetInstance()->current_test_info()->name()) + ".xml";
++  xml_printer::coverage_save(xml_name, cntxt);
+   fc4sc::global::delete_context(cntxt);
++  bool xml_equal = xml_compare::compare("ref_files/"+xml_name, xml_name);
++  EXPECT_TRUE(xml_equal);
+ 
+ }

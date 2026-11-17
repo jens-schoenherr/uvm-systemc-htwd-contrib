@@ -1,0 +1,154 @@
+--- 
++++ 
+@@ -17,6 +17,7 @@
+ ******************************************************************************/
+ #include "fc4sc.hpp"
+ #include "gtest/gtest.h"
++#include "xml_compare.h"
+ 
+ class cvg_dynamic_test : public covergroup {
+ public:
+@@ -96,9 +97,11 @@
+   EXPECT_EQ(cvg.cvp2.get_inst_coverage(), 100);  
+   EXPECT_EQ(cvg.get_inst_coverage(), 100);
+ 
+-
+-  xml_printer::coverage_save("dynamic_bin_"+std::string(::testing::UnitTest::GetInstance()->current_test_info()->name()) + ".xml",cntxt);
++  std::string xml_name = "dynamic_bin_" + std::string(::testing::UnitTest::GetInstance()->current_test_info()->name()) + ".xml";
++  xml_printer::coverage_save(xml_name, cntxt);
+   fc4sc::global::delete_context(cntxt);
++  bool xml_equal = xml_compare::compare("ref_files/"+xml_name, xml_name);
++  EXPECT_TRUE(xml_equal);
+ 
+ }
+ 
+@@ -162,9 +165,11 @@
+   EXPECT_EQ(cvg.cvp_cross.get_inst_coverage(), 50);  
+   EXPECT_EQ((int)cvg.get_inst_coverage(), 66);
+ 
+-
+-  xml_printer::coverage_save("dynamic_bin_"+std::string(::testing::UnitTest::GetInstance()->current_test_info()->name()) + ".xml",cntxt);
++  std::string xml_name = "dynamic_bin_" + std::string(::testing::UnitTest::GetInstance()->current_test_info()->name()) + ".xml";
++  xml_printer::coverage_save(xml_name, cntxt);
+   fc4sc::global::delete_context(cntxt);
++  bool xml_equal = xml_compare::compare("ref_files/"+xml_name, xml_name);
++  EXPECT_TRUE(xml_equal);
+ 
+ }
+ 
+@@ -189,8 +194,11 @@
+ 
+   std::cout << inst.cvg_base::get_coverpoint("sum").get_data() << " cvp of sum\n";
+ 
+-  xml_printer::coverage_save("dynamic_covergroup_"+std::string(::testing::UnitTest::GetInstance()->current_test_info()->name()) + ".xml",cntxt);
++  std::string xml_name = "dynamic_covergroup_" + std::string(::testing::UnitTest::GetInstance()->current_test_info()->name()) + ".xml";
++  xml_printer::coverage_save(xml_name, cntxt);
+   fc4sc::global::delete_context(cntxt);
++  bool xml_equal = xml_compare::compare("ref_files/"+xml_name, xml_name);
++  EXPECT_TRUE(xml_equal);
+ 
+ }
+ 
+@@ -223,8 +231,11 @@
+   inst.sample();
+   EXPECT_EQ(inst.get_inst_coverage(),100);
+ 
+-  xml_printer::coverage_save("dynamic_covergroup_"+std::string(::testing::UnitTest::GetInstance()->current_test_info()->name()) + ".xml",cntxt);
++  std::string xml_name = "dynamic_covergroup_" + std::string(::testing::UnitTest::GetInstance()->current_test_info()->name()) + ".xml";
++  xml_printer::coverage_save(xml_name, cntxt);
+   fc4sc::global::delete_context(cntxt);
++  bool xml_equal = xml_compare::compare("ref_files/"+xml_name, xml_name);
++  EXPECT_TRUE(xml_equal);
+ 
+ }
+ 
+@@ -258,8 +269,11 @@
+   inst.sample();
+   EXPECT_EQ(inst.get_inst_coverage(),100);
+ 
+-  xml_printer::coverage_save("dynamic_covergroup_"+std::string(::testing::UnitTest::GetInstance()->current_test_info()->name()) + ".xml",cntxt);
++  std::string xml_name = "dynamic_covergroup_" + std::string(::testing::UnitTest::GetInstance()->current_test_info()->name()) + ".xml";
++  xml_printer::coverage_save(xml_name, cntxt);
+   fc4sc::global::delete_context(cntxt);
++  bool xml_equal = xml_compare::compare("ref_files/"+xml_name, xml_name);
++  EXPECT_TRUE(xml_equal);
+ 
+ }
+ 
+@@ -289,8 +303,11 @@
+   inst.sample();
+   EXPECT_EQ((int)inst.get_inst_coverage(),41);
+ 
+-  xml_printer::coverage_save("dynamic_covergroup_"+std::string(::testing::UnitTest::GetInstance()->current_test_info()->name()) + ".xml",cntxt);
++  std::string xml_name = "dynamic_covergroup_" + std::string(::testing::UnitTest::GetInstance()->current_test_info()->name()) + ".xml";
++  xml_printer::coverage_save(xml_name, cntxt);
+   fc4sc::global::delete_context(cntxt);
++  bool xml_equal = xml_compare::compare("ref_files/"+xml_name, xml_name);
++  EXPECT_TRUE(xml_equal);
+ 
+ }
+ 
+@@ -317,8 +334,11 @@
+   inst.sample();
+   EXPECT_EQ(inst.get_inst_coverage(),40);
+ 
+-  xml_printer::coverage_save("dynamic_covergroup_"+std::string(::testing::UnitTest::GetInstance()->current_test_info()->name()) + ".xml",cntxt);
++  std::string xml_name = "dynamic_covergroup_" + std::string(::testing::UnitTest::GetInstance()->current_test_info()->name()) + ".xml";
++  xml_printer::coverage_save(xml_name, cntxt);
+   fc4sc::global::delete_context(cntxt);
++  bool xml_equal = xml_compare::compare("ref_files/"+xml_name, xml_name);
++  EXPECT_TRUE(xml_equal);
+ 
+ }
+ 
+@@ -345,8 +365,11 @@
+   inst.sample();
+   EXPECT_EQ(inst.get_inst_coverage(),40);
+ 
+-  xml_printer::coverage_save("dynamic_covergroup_"+std::string(::testing::UnitTest::GetInstance()->current_test_info()->name()) + ".xml",cntxt);
++  std::string xml_name = "dynamic_covergroup_" + std::string(::testing::UnitTest::GetInstance()->current_test_info()->name()) + ".xml";
++  xml_printer::coverage_save(xml_name, cntxt);
+   fc4sc::global::delete_context(cntxt);
++  bool xml_equal = xml_compare::compare("ref_files/"+xml_name, xml_name);
++  EXPECT_TRUE(xml_equal);
+ 
+ }
+ 
+@@ -375,8 +398,11 @@
+   inst.sample();
+   EXPECT_EQ(inst.get_inst_coverage(),40);
+ 
+-  xml_printer::coverage_save("dynamic_covergroup_"+std::string(::testing::UnitTest::GetInstance()->current_test_info()->name()) + ".xml",cntxt);
++  std::string xml_name = "dynamic_covergroup_" + std::string(::testing::UnitTest::GetInstance()->current_test_info()->name()) + ".xml";
++  xml_printer::coverage_save(xml_name, cntxt);
+   fc4sc::global::delete_context(cntxt);
++  bool xml_equal = xml_compare::compare("ref_files/"+xml_name, xml_name);
++  EXPECT_TRUE(xml_equal);
+ 
+ }
+ 
+@@ -402,8 +428,11 @@
+ 
+   std::cout << inst.cvg_base::get_coverpoint("sum").get_data() << " cvp of sum\n";
+ 
+-  xml_printer::coverage_save("dynamic_covergroup_"+std::string(::testing::UnitTest::GetInstance()->current_test_info()->name()) + ".xml",cntxt);
++  std::string xml_name = "dynamic_covergroup_" + std::string(::testing::UnitTest::GetInstance()->current_test_info()->name()) + ".xml";
++  xml_printer::coverage_save(xml_name, cntxt);
+   fc4sc::global::delete_context(cntxt);
++  bool xml_equal = xml_compare::compare("ref_files/"+xml_name, xml_name);
++  EXPECT_TRUE(xml_equal);
+ 
+ }
+ 
+@@ -428,7 +457,10 @@
+ 
+   std::cout << inst.cvg_base::get_coverpoint("sum").get_data() << " cvp of sum\n";
+ 
+-  xml_printer::coverage_save("dynamic_covergroup_"+std::string(::testing::UnitTest::GetInstance()->current_test_info()->name()) + ".xml",cntxt);
++  std::string xml_name = "dynamic_covergroup_" + std::string(::testing::UnitTest::GetInstance()->current_test_info()->name()) + ".xml";
++  xml_printer::coverage_save(xml_name, cntxt);
+   fc4sc::global::delete_context(cntxt);
++  bool xml_equal = xml_compare::compare("ref_files/"+xml_name, xml_name);
++  EXPECT_TRUE(xml_equal);
+ 
+ }

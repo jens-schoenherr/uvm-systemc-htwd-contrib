@@ -1,0 +1,36 @@
+--- 
++++ 
+@@ -17,6 +17,8 @@
+ ******************************************************************************/
+ #include "fc4sc.hpp"
+ #include "gtest/gtest.h"
++#include "xml_compare.h"
++
+ class example_static_cvg : public covergroup {
+ public:
+   CG_CONS(example_static_cvg) {
+@@ -46,9 +48,11 @@
+   inst.sample();
+   std::cout << "example_static_cvg coverage = " << inst.get_inst_coverage() << "\n";
+ 
+-  xml_printer::coverage_save("demo.xml",cntxt);
++  std::string xml_name = "demo.xml";
++  xml_printer::coverage_save(xml_name, cntxt);
+   fc4sc::global::delete_context(cntxt);
+-
++  bool xml_equal = xml_compare::compare("ref_files/"+xml_name, xml_name);
++  EXPECT_TRUE(xml_equal);
+ }
+ 
+ class main : public fc4sc::scope {
+@@ -79,5 +83,9 @@
+   main main_inst("main");
+   main_inst.cg_inst.sample();
+   std::cout << "coverage = " << main_inst.cg_inst.get_inst_coverage() << "\n";
+-  xml_printer::coverage_save("scoped_demo.xml");
++
++  std::string xml_name = "scoped_demo.xml";
++  xml_printer::coverage_save(xml_name);
++  bool xml_equal = xml_compare::compare("ref_files/"+xml_name, xml_name);
++  EXPECT_TRUE(xml_equal);
+ }

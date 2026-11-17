@@ -1,0 +1,23 @@
+--- 
++++ 
+@@ -17,6 +17,7 @@
+ ******************************************************************************/
+ #include "fc4sc.hpp"
+ #include "gtest/gtest.h"
++#include "xml_compare.h"
+ 
+ bool flag1, flag2;
+ 
+@@ -53,8 +54,11 @@
+ 
+   EXPECT_EQ((int)inst.get_inst_coverage(),66);
+ 
+-  xml_printer::coverage_save("cvp_general_expression_"+ std::string(::testing::UnitTest::GetInstance()->current_test_info()->name()) + ".xml",cntxt);
++  std::string xml_name = "cvp_general_expression_" + std::string(::testing::UnitTest::GetInstance()->current_test_info()->name()) + ".xml";
++  xml_printer::coverage_save(xml_name, cntxt);
+   fc4sc::global::delete_context(cntxt);
++  bool xml_equal = xml_compare::compare("ref_files/"+xml_name, xml_name);
++  EXPECT_TRUE(xml_equal);
+ 
+ }
+ 

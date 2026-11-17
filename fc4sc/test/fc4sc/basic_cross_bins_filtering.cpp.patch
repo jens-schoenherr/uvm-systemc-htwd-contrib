@@ -1,0 +1,37 @@
+--- 
++++ 
+@@ -24,6 +24,7 @@
+ ******************************************************************************/
+ #include "fc4sc.hpp"
+ #include "gtest/gtest.h"
++#include "xml_compare.h"
+ 
+ class basic_cross_bins_filtering_test: public covergroup {
+ public:
+@@ -89,9 +90,11 @@
+     basic_cg_1.sample(1, 1);
+     EXPECT_EQ(basic_cg_1.get_inst_coverage(), 100);
+ 
+-    xml_printer::coverage_save("basic_" + std::string(::testing::UnitTest::GetInstance()->current_test_info()->name()) + ".xml",cntxt);
+-
++    std::string xml_name = "basic_" + std::string(::testing::UnitTest::GetInstance()->current_test_info()->name()) + ".xml";
++    xml_printer::coverage_save(xml_name, cntxt);
+     fc4sc::global::delete_context(cntxt);
++    bool xml_equal = xml_compare::compare("ref_files/"+xml_name, xml_name);
++    EXPECT_TRUE(xml_equal);
+ 
+ }
+ 
+@@ -141,8 +144,11 @@
+   EXPECT_EQ(cvg.cvp_cross.get_inst_coverage(), 50);  
+   EXPECT_EQ(cvg.get_inst_coverage(), 50);
+ 
+-  xml_printer::coverage_save("basic_"+std::string(::testing::UnitTest::GetInstance()->current_test_info()->name()) + ".xml",cntxt);
++  std::string xml_name = "basic_" + std::string(::testing::UnitTest::GetInstance()->current_test_info()->name()) + ".xml";
++  xml_printer::coverage_save(xml_name, cntxt);
+   fc4sc::global::delete_context(cntxt);
++  bool xml_equal = xml_compare::compare("ref_files/"+xml_name, xml_name);
++  EXPECT_TRUE(xml_equal);
+ 
+ }
+ 

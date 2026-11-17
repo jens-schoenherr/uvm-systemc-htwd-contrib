@@ -1,0 +1,31 @@
+--- 
++++ 
+@@ -25,6 +25,7 @@
+ 
+ #include "fc4sc.hpp"
+ #include "gtest/gtest.h"
++#include "xml_compare.h"
+ 
+ class basic_test_1 : public covergroup {
+ public:
+@@ -93,12 +94,15 @@
+    // If ! power of two, count shouldn't go up
+    EXPECT_EQ(fc4sc::global::get_coverage(basic_test_1_cg.scp_type_name(),"basic_test_1",cntxt), cov);
+ 
+-}
++  }
+ 
+-EXPECT_EQ(fc4sc::global::get_coverage(basic_test_1_cg.scp_type_name(),"basic_test_1",cntxt), 100);
+-EXPECT_EQ(fc4sc::global::get_coverage(cntxt), 100);
++  EXPECT_EQ(fc4sc::global::get_coverage(basic_test_1_cg.scp_type_name(),"basic_test_1",cntxt), 100);
++  EXPECT_EQ(fc4sc::global::get_coverage(cntxt), 100);
+ 
+-xml_printer::coverage_save("random_" + std::string(::testing::UnitTest::GetInstance()->current_test_info()->name()) + ".xml",cntxt);
+-fc4sc::global::delete_context(cntxt);
++  std::string xml_name = "random_" + std::string(::testing::UnitTest::GetInstance()->current_test_info()->name()) + ".xml";
++  xml_printer::coverage_save(xml_name, cntxt);
++  fc4sc::global::delete_context(cntxt);
++  bool xml_equal = xml_compare::compare("ref_files/"+xml_name, xml_name);
++  EXPECT_TRUE(xml_equal);
+ 
+ }

@@ -1,0 +1,30 @@
+--- 
++++ 
+@@ -25,6 +25,7 @@
+ 
+ #include "fc4sc.hpp"
+ #include "gtest/gtest.h"
++#include "xml_compare.h"
+ 
+ class basic_cvp_goal_test : public covergroup {
+ public:
+@@ -36,7 +37,6 @@
+     cvp2.option().goal = 100;
+   };
+ 
+-  
+   // Must define sample
+   int SAMPLE_POINT(sample_point1,cvp1);
+   int SAMPLE_POINT(sample_point2,cvp2);
+@@ -81,7 +81,10 @@
+ 
+   EXPECT_TRUE(basic_cg.get_coverage() == 100);
+ 
+-  xml_printer::coverage_save("basic_" + std::string(::testing::UnitTest::GetInstance()->current_test_info()->name()) + "1.xml",cntxt);
++  std::string xml_name = "basic_" + std::string(::testing::UnitTest::GetInstance()->current_test_info()->name()) + "1.xml";
++  xml_printer::coverage_save(xml_name, cntxt);
+   fc4sc::global::delete_context(cntxt);
++  bool xml_equal = xml_compare::compare("ref_files/"+xml_name, xml_name);
++  EXPECT_TRUE(xml_equal);
+ 
+ }

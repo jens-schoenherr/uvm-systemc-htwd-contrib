@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<UCIS xmlns="UCIS" xmlns:ucis="http://www.w3.org/2001/XMLSchema-instance" ucisVersion="1.0"  writtenBy="*"
+ writtenTime="*">
+<sourceFiles  fileName="./../../includes/fc4sc_master.hpp" id="2" />
+<sourceFiles  fileName="basic_coverpoint_definitions.cpp" id="1" />
+<historyNodes historyNodeId="200" 
+parentId="200" 
+logicalName="string" 
+physicalName="string" 
+testStatus="true" 
+date="*" 
+userName="*" 
+toolCategory="string" 
+ucisVersion="1.0" 
+vendorId="string" 
+vendorTool="string" 
+vendorToolVersion="string" 
+>
+</historyNodes>
+<instanceCoverages name="default_scope_instance" 
+moduleName="default_scope" 
+key="1" 
+instanceId="3" 
+>
+<id file="2" line="123" inlineCount="1" />
+<covergroupCoverage weight="1" >
+<cgInstance name="cvg" 
+key="2" 
+excluded="false" 
+>
+<options weight="1" goal="100" comment="" at_least="1" auto_bin_max="10" detect_overlap="0" cross_num_print_missing="0" per_instance="false" />
+<cgId cgName="basic_coverpoint_definitions_cvg" moduleName="default_scope">
+<cginstSourceId file="1" line="49" inlineCount="1"/>
+<cgSourceId file="1" line="32" inlineCount="1"/>
+</cgId>
+<coverpoint name="cvp_bool" key="3" exprString="var_bool">
+<options weight="1" goal="100" comment="" at_least="1" auto_bin_max="10" detect_overlap="0" />
+<coverpointBin name="65" 
+key="4" 
+type="default" >
+<range 
+from="1" 
+to ="1"
+>
+<contents coverageCount="1"></contents>
+</range>
+
+</coverpointBin>
+</coverpoint>
+
+<coverpoint name="cvp_char" key="5" exprString="var_char">
+<options weight="1" goal="100" comment="" at_least="1" auto_bin_max="10" detect_overlap="0" />
+<coverpointBin name="65" 
+key="6" 
+type="default" >
+<range 
+from="65" 
+to ="65"
+>
+<contents coverageCount="1"></contents>
+</range>
+
+</coverpointBin>
+</coverpoint>
+
+<coverpoint name="cvp_int" key="7" exprString="var_int">
+<options weight="1" goal="100" comment="" at_least="1" auto_bin_max="10" detect_overlap="0" />
+<coverpointBin name="65" 
+key="8" 
+type="default" >
+<range 
+from="65" 
+to ="65"
+>
+<contents coverageCount="1"></contents>
+</range>
+
+</coverpointBin>
+</coverpoint>
+
+<coverpoint name="cvp_unsigned_int" key="9" exprString="var_unsigned_int">
+<options weight="1" goal="100" comment="" at_least="1" auto_bin_max="10" detect_overlap="0" />
+<coverpointBin name="65" 
+key="10" 
+type="default" >
+<range 
+from="65" 
+to ="65"
+>
+<contents coverageCount="1"></contents>
+</range>
+
+</coverpointBin>
+</coverpoint>
+
+<coverpoint name="cvp_long" key="11" exprString="var_long">
+<options weight="1" goal="100" comment="" at_least="1" auto_bin_max="10" detect_overlap="0" />
+<coverpointBin name="65" 
+key="12" 
+type="default" >
+<range 
+from="65" 
+to ="65"
+>
+<contents coverageCount="1"></contents>
+</range>
+
+</coverpointBin>
+</coverpoint>
+
+
+
+</cgInstance>
+</covergroupCoverage>
+</instanceCoverages>
+</UCIS>

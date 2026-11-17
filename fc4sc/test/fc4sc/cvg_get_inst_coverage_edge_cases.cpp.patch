@@ -1,0 +1,36 @@
+--- 
++++ 
+@@ -25,6 +25,7 @@
+ 
+ #include "fc4sc.hpp"
+ #include "gtest/gtest.h"
++#include "xml_compare.h"
+ 
+ class cvg_0_weight_test : public covergroup {
+ public:
+@@ -62,11 +63,10 @@
+   auto cntxt = fc4sc::global::create_new_context();
+ 
+   cvg_0_weight_test cvg("cvg",__FILE__,__LINE__,cntxt);
+-  
+ 
+   EXPECT_EQ(cvg.get_inst_coverage(), 0);
+   EXPECT_EQ(cvg.get_coverage(), 0);
+-  
++
+   int hit = -1, total = -1;
+   EXPECT_EQ(cvg.get_inst_coverage(hit, total), 0);
+   EXPECT_EQ(hit, 0);
+@@ -94,8 +94,11 @@
+   EXPECT_EQ(hit, 0);
+   EXPECT_EQ(total, 2);
+ 
+-  xml_printer::coverage_save("cvg_get_inst_coverage_" + std::string(::testing::UnitTest::GetInstance()->current_test_info()->name()) + ".xml",cntxt);
++  std::string xml_name = "cvg_get_inst_coverage_" + std::string(::testing::UnitTest::GetInstance()->current_test_info()->name()) + ".xml";
++  xml_printer::coverage_save(xml_name, cntxt);
+   fc4sc::global::delete_context(cntxt);
++  bool xml_equal = xml_compare::compare("ref_files/"+xml_name, xml_name);
++  EXPECT_TRUE(xml_equal);
+ 
+ }
+ 

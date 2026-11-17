@@ -1,0 +1,37 @@
+--- 
++++ 
+@@ -17,6 +17,7 @@
+ ******************************************************************************/
+ #include "declaration_definition_covergroup.hpp"
+ #include "gtest/gtest.h"
++#include "xml_compare.h"
+ 
+ CG_CONS_DEF(decl_def_cvg) { }
+ 
+@@ -27,8 +28,12 @@
+   cvg.x = 1;
+   cvg.sample();
+   EXPECT_EQ(cvg.get_inst_coverage(),100);
+-  xml_printer::coverage_save("declaration_definition_covergroup.xml",cntxt);
++
++  std::string xml_name = "declaration_definition_covergroup.xml";
++  xml_printer::coverage_save(xml_name, cntxt);
+   fc4sc::global::delete_context(cntxt);
++  bool xml_equal = xml_compare::compare("ref_files/"+xml_name, xml_name);
++  EXPECT_TRUE(xml_equal);
+ }
+ 
+ CG_SCOPED_CONS_DEF(scoped_decl_def_cvg,top_scope) { }
+@@ -41,7 +46,10 @@
+   cvg.x = 1;
+   cvg.sample();
+   EXPECT_EQ(cvg.get_inst_coverage(),100);
+-  xml_printer::coverage_save("declaration_definition_covergroup_scoped.xml",cntxt);
+-  fc4sc::global::delete_context(cntxt);
+ 
++  std::string xml_name = "declaration_definition_covergroup_scoped.xml";
++  xml_printer::coverage_save(xml_name, cntxt);
++  fc4sc::global::delete_context(cntxt);
++  bool xml_equal = xml_compare::compare("ref_files/"+xml_name, xml_name);
++  EXPECT_TRUE(xml_equal);
+ }

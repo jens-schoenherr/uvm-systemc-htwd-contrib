@@ -1,0 +1,94 @@
+--- 
++++ 
+@@ -18,6 +18,7 @@
+ #include "fc4sc.hpp"
+ #include "gtest/gtest.h"
+ #include <assert.h>
++#include "xml_compare.h"
+ 
+ class my_scope : public fc4sc::scope {
+ 
+@@ -28,7 +29,6 @@
+   public:
+     CG_SCOPED_CONS(fc4sc_covergroup,my_scope) { }
+ 
+-
+     int x = 0;
+     COVERPOINT(int,cvp_int,x) {bin<int>("bin",0)};
+ 
+@@ -43,15 +43,19 @@
+ TEST(scope, test1) {
+   auto cntxt = fc4sc::global::create_new_context();
+   my_scope mod("my_scope",__FILE__,__LINE__,cntxt);
+-  xml_printer::coverage_save("scope_test1.xml",cntxt);
++
++  std::string xml_name = "scope_test1.xml";
++  xml_printer::coverage_save(xml_name, cntxt);
+   fc4sc::global::delete_context(cntxt);
++  bool xml_equal = xml_compare::compare("ref_files/"+xml_name, xml_name);
++  EXPECT_TRUE(xml_equal);
+ }
+ 
+ TEST(dynamic_scope, test1) {
+   fc4sc::dynamic_scope_factory top_type("top_type"); // type_name = top_type
+   fc4sc::dynamic_scope_factory sub_type1(top_type,"sub_type1");//auto sub_type1 = top_type.create_scope("sub_type1"); // type_name = top_type::sub_type1
+   fc4sc::dynamic_scope_factory sub_type2("sub_type2"); // type_name = sub_type2
+-  
++
+   top_type.add_child(sub_type1, "child1");
+   top_type.add_child(sub_type2, "child2a");
+   top_type.add_child(sub_type2, "child2b");
+@@ -89,8 +93,12 @@
+   EXPECT_EQ(child2b.get_inst_coverage(),100);
+   child2b.sample();
+   EXPECT_EQ(child2b.get_inst_coverage(),100);
+-  xml_printer::coverage_save("dynamic_scope_test1.xml",cntxt);
++
++  std::string xml_name = "dynamic_scope_test1.xml";
++  xml_printer::coverage_save(xml_name, cntxt);
+   fc4sc::global::delete_context(cntxt);
++  bool xml_equal = xml_compare::compare("ref_files/"+xml_name, xml_name);
++  EXPECT_TRUE(xml_equal);
+ };
+ 
+ class my_sub_scope : public fc4sc::scope {
+@@ -144,8 +152,12 @@
+   EXPECT_EQ(top.sub_mod.my_cvg.get_inst_coverage(),0);
+   top.sub_mod.my_cvg.sample();
+   EXPECT_EQ(top.sub_mod.my_cvg.get_inst_coverage(),100);
+-  xml_printer::coverage_save("scope_test2.xml",cntxt);
++
++  std::string xml_name = "scope_test2.xml";
++  xml_printer::coverage_save(xml_name, cntxt);
+   fc4sc::global::delete_context(cntxt);
++  bool xml_equal = xml_compare::compare("ref_files/"+xml_name, xml_name);
++  EXPECT_TRUE(xml_equal);
+ }
+ 
+ class top : public fc4sc::scope {
+@@ -181,8 +193,12 @@
+   EXPECT_EQ("top::child",inst.child_inst.type_name());
+   EXPECT_EQ("top",inst.child_inst.top_cvg_inst.scp_type_name());
+   EXPECT_EQ(0,inst.child_inst.top_cvg_inst.get_inst_coverage());
+-  xml_printer::coverage_save("toy_scope.xml",cntxt);
++
++  std::string xml_name = "toy_scope.xml";
++  xml_printer::coverage_save(xml_name, cntxt);
+   fc4sc::global::delete_context(cntxt);
++  bool xml_equal = xml_compare::compare("ref_files/"+xml_name, xml_name);
++  EXPECT_TRUE(xml_equal);
+ }
+ 
+ TEST(dynamic_scope, demo1) {
+@@ -207,6 +223,10 @@
+   flag1_cvp.bind_sample(main_inst.get_covergroup("cg_inst"),flag1);
+   flag2_cvp.bind_sample(main_inst.get_covergroup("cg_inst"),flag2);
+   main_inst.get_covergroup("cg_inst").sample();
+-  xml_printer::coverage_save("dynamic_scope_demo1.xml",cntxt);
++
++  std::string xml_name = "dynamic_scope_demo1.xml";
++  xml_printer::coverage_save(xml_name, cntxt);
+   fc4sc::global::delete_context(cntxt);
++  bool xml_equal = xml_compare::compare("ref_files/"+xml_name, xml_name);
++  EXPECT_TRUE(xml_equal);
+ }

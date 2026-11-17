@@ -1,0 +1,22 @@
+--- 
++++ 
+@@ -25,6 +25,7 @@
+ 
+ #include "fc4sc.hpp"
+ #include "gtest/gtest.h"
++#include "xml_compare.h"
+ 
+ class basic_coverpoint_definitions_cvg : public covergroup {
+ public:
+@@ -50,7 +51,9 @@
+   cvg.sample();
+   EXPECT_EQ(cvg.get_inst_coverage(), 100);
+ 
+-  xml_printer::coverage_save("basic_" + std::string(::testing::UnitTest::GetInstance()->current_test_info()->name()) + "0.xml",cntxt);
++  std::string xml_name = "basic_" + std::string(::testing::UnitTest::GetInstance()->current_test_info()->name()) + "0.xml";
++  xml_printer::coverage_save(xml_name, cntxt);
+   fc4sc::global::delete_context(cntxt);
+-
++  bool xml_equal = xml_compare::compare("ref_files/"+xml_name, xml_name);
++  EXPECT_TRUE(xml_equal);
+ }

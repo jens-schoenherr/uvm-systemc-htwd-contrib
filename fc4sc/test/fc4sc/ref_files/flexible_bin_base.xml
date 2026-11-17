@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<UCIS xmlns="UCIS" xmlns:ucis="http://www.w3.org/2001/XMLSchema-instance" ucisVersion="1.0"  writtenBy="*"
+ writtenTime="*">
+<sourceFiles  fileName="./../../includes/fc4sc_master.hpp" id="2" />
+<sourceFiles  fileName="flexible_bin_array_test.cpp" id="1" />
+<historyNodes historyNodeId="200" 
+parentId="200" 
+logicalName="string" 
+physicalName="string" 
+testStatus="true" 
+date="*" 
+userName="*" 
+toolCategory="string" 
+ucisVersion="1.0" 
+vendorId="string" 
+vendorTool="string" 
+vendorToolVersion="string" 
+>
+</historyNodes>
+<instanceCoverages name="default_scope_instance" 
+moduleName="default_scope" 
+key="1" 
+instanceId="3" 
+>
+<id file="2" line="123" inlineCount="1" />
+<covergroupCoverage weight="1" >
+<cgInstance name="cvg" 
+key="2" 
+excluded="false" 
+>
+<options weight="1" goal="100" comment="" at_least="1" auto_bin_max="10" detect_overlap="0" cross_num_print_missing="0" per_instance="false" />
+<cgId cgName="flexible_bin_array_cvg" moduleName="default_scope">
+<cginstSourceId file="1" line="77" inlineCount="1"/>
+<cgSourceId file="1" line="64" inlineCount="1"/>
+</cgId>
+<coverpoint name="bin_array_cvp" key="3" exprString="val">
+<options weight="1" goal="100" comment="" at_least="1" auto_bin_max="10" detect_overlap="0" />
+<coverpointBin name="fibonacci_intervals[0]" 
+key="4" 
+type="default" >
+<range 
+from="1" 
+to ="2"
+>
+<contents coverageCount="2"></contents>
+</range>
+
+</coverpointBin>
+<coverpointBin name="fibonacci_intervals[1]" 
+key="5" 
+type="default" >
+<range 
+from="3" 
+to ="3"
+>
+<contents coverageCount="1"></contents>
+</range>
+
+</coverpointBin>
+<coverpointBin name="fibonacci_intervals[2]" 
+key="6" 
+type="default" >
+<range 
+from="4" 
+to ="5"
+>
+<contents coverageCount="1"></contents>
+</range>
+
+</coverpointBin>
+<coverpointBin name="fibonacci_intervals[3]" 
+key="7" 
+type="default" >
+<range 
+from="6" 
+to ="8"
+>
+<contents coverageCount="1"></contents>
+</range>
+
+</coverpointBin>
+<coverpointBin name="fibonacci_intervals[4]" 
+key="8" 
+type="default" >
+<range 
+from="9" 
+to ="13"
+>
+<contents coverageCount="1"></contents>
+</range>
+
+</coverpointBin>
+<coverpointBin name="fibonacci_intervals[5]" 
+key="9" 
+type="default" >
+<range 
+from="14" 
+to ="21"
+>
+<contents coverageCount="1"></contents>
+</range>
+
+</coverpointBin>
+<coverpointBin name="fibonacci_intervals[6]" 
+key="10" 
+type="default" >
+<range 
+from="22" 
+to ="34"
+>
+<contents coverageCount="1"></contents>
+</range>
+
+</coverpointBin>
+<coverpointBin name="fibonacci_intervals[7]" 
+key="11" 
+type="default" >
+<range 
+from="35" 
+to ="55"
+>
+<contents coverageCount="1"></contents>
+</range>
+
+</coverpointBin>
+<coverpointBin name="fibonacci_intervals[8]" 
+key="12" 
+type="default" >
+<range 
+from="56" 
+to ="89"
+>
+<contents coverageCount="1"></contents>
+</range>
+
+</coverpointBin>
+<coverpointBin name="fibonacci_intervals[9]" 
+key="13" 
+type="default" >
+<range 
+from="90" 
+to ="144"
+>
+<contents coverageCount="1"></contents>
+</range>
+
+</coverpointBin>
+<coverpointBin name="fibonacci[0]" 
+key="14" 
+type="default" >
+<range 
+from="1" 
+to ="1"
+>
+<contents coverageCount="1"></contents>
+</range>
+
+</coverpointBin>
+<coverpointBin name="fibonacci[1]" 
+key="15" 
+type="default" >
+<range 
+from="2" 
+to ="2"
+>
+<contents coverageCount="1"></contents>
+</range>
+
+</coverpointBin>
+<coverpointBin name="fibonacci[2]" 
+key="16" 
+type="default" >
+<range 
+from="3" 
+to ="3"
+>
+<contents coverageCount="1"></contents>
+</range>
+
+</coverpointBin>
+<coverpointBin name="fibonacci[3]" 
+key="17" 
+type="default" >
+<range 
+from="5" 
+to ="5"
+>
+<contents coverageCount="1"></contents>
+</range>
+
+</coverpointBin>
+<coverpointBin name="fibonacci[4]" 
+key="18" 
+type="default" >
+<range 
+from="8" 
+to ="8"
+>
+<contents coverageCount="1"></contents>
+</range>
+
+</coverpointBin>
+</coverpoint>
+
+
+
+</cgInstance>
+</covergroupCoverage>
+</instanceCoverages>
+</UCIS>

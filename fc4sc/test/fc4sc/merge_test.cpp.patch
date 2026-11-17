@@ -1,0 +1,64 @@
+--- 
++++ 
+@@ -19,6 +19,7 @@
+ #include "gtest/gtest.h"
+ #include <climits>
+ #include <memory>
++#include "xml_compare.h"
+ 
+ class my_child_scope : public fc4sc::scope {
+ 
+@@ -72,8 +73,12 @@
+   EXPECT_EQ(top.sub_mod->my_cvg.get_inst_coverage(),0);
+   top.sub_mod->my_cvg.sample();
+   EXPECT_EQ(top.sub_mod->my_cvg.get_inst_coverage(),50);
+-  xml_printer::coverage_save("merge_test1.xml",cntxt); 
++
++  std::string xml_name = "merge_test1.xml";
++  xml_printer::coverage_save(xml_name, cntxt);
+   fc4sc::global::delete_context(cntxt);
++  bool xml_equal = xml_compare::compare("ref_files/"+xml_name, xml_name);
++  EXPECT_TRUE(xml_equal);
+ }
+ 
+ TEST(merge,test2) {
+@@ -82,8 +87,12 @@
+   EXPECT_EQ(top.my_cvg->get_inst_coverage(),0);
+   top.my_cvg->sample();
+   EXPECT_EQ(top.my_cvg->get_inst_coverage(),50);
+-  xml_printer::coverage_save("merge_test2.xml",cntxt); 
++
++  std::string xml_name = "merge_test2.xml";
++  xml_printer::coverage_save(xml_name, cntxt);
+   fc4sc::global::delete_context(cntxt);
++  bool xml_equal = xml_compare::compare("ref_files/"+xml_name, xml_name);
++  EXPECT_TRUE(xml_equal);
+ }
+ 
+ TEST(merge,test3) {
+@@ -93,8 +102,12 @@
+   top.my_cvg->x = 1;
+   top.my_cvg->sample();
+   EXPECT_EQ(top.my_cvg->get_inst_coverage(),50);
+-  xml_printer::coverage_save("merge_test3.xml",cntxt); 
++
++  std::string xml_name = "merge_test3.xml";
++  xml_printer::coverage_save(xml_name, cntxt);
+   fc4sc::global::delete_context(cntxt);
++  bool xml_equal = xml_compare::compare("ref_files/"+xml_name, xml_name);
++  EXPECT_TRUE(xml_equal);
+ }
+ 
+ TEST(merge,test4) {
+@@ -104,6 +117,10 @@
+   top.sub_mod->my_cvg.x = 1;
+   top.sub_mod->my_cvg.sample();
+   EXPECT_EQ(top.sub_mod->my_cvg.get_inst_coverage(),50);
+-  xml_printer::coverage_save("merge_test4.xml",cntxt);
++
++  std::string xml_name = "merge_test4.xml";
++  xml_printer::coverage_save(xml_name, cntxt);
+   fc4sc::global::delete_context(cntxt);
++  bool xml_equal = xml_compare::compare("ref_files/"+xml_name, xml_name);
++  EXPECT_TRUE(xml_equal);
+ }

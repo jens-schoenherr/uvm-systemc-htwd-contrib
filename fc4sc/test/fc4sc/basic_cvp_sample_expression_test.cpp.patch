@@ -1,0 +1,31 @@
+--- 
++++ 
+@@ -25,6 +25,7 @@
+ 
+ #include "fc4sc.hpp"
+ #include "gtest/gtest.h"
++#include "xml_compare.h"
+ 
+ int factorial(uint32_t n) {
+     return (n == 1 || n == 0) ? 1 : n*factorial(n-1);
+@@ -56,7 +57,7 @@
+   auto cntxt = fc4sc::global::create_new_context();
+ 
+   cvp_sample_test cvg("cvg",__FILE__,__LINE__,cntxt);
+-  
++
+   EXPECT_EQ(cvg.get_inst_coverage(), 0);
+ 
+   cvg.value = 3;
+@@ -71,7 +72,10 @@
+   EXPECT_EQ(cvg.square_value_cvp.get_inst_coverage(), 100);
+   EXPECT_EQ(cvg.get_inst_coverage(), 100);
+ 
+-  xml_printer::coverage_save("basic_" + std::string(::testing::UnitTest::GetInstance()->current_test_info()->name()) + ".xml",cntxt);
++  std::string xml_name = "basic_" + std::string(::testing::UnitTest::GetInstance()->current_test_info()->name()) + ".xml";
++  xml_printer::coverage_save(xml_name, cntxt);
+   fc4sc::global::delete_context(cntxt);
++  bool xml_equal = xml_compare::compare("ref_files/"+xml_name, xml_name);
++  EXPECT_TRUE(xml_equal);
+ 
+ }

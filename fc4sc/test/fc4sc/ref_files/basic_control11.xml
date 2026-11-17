@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<UCIS xmlns="UCIS" xmlns:ucis="http://www.w3.org/2001/XMLSchema-instance" ucisVersion="1.0"  writtenBy="*"
+ writtenTime="*">
+<sourceFiles  fileName="./../../includes/fc4sc_master.hpp" id="2" />
+<sourceFiles  fileName="basic_control_test.cpp" id="1" />
+<historyNodes historyNodeId="200" 
+parentId="200" 
+logicalName="string" 
+physicalName="string" 
+testStatus="true" 
+date="*" 
+userName="*" 
+toolCategory="string" 
+ucisVersion="1.0" 
+vendorId="string" 
+vendorTool="string" 
+vendorToolVersion="string" 
+>
+</historyNodes>
+<instanceCoverages name="default_scope_instance" 
+moduleName="default_scope" 
+key="1" 
+instanceId="3" 
+>
+<id file="2" line="123" inlineCount="1" />
+<covergroupCoverage weight="1" >
+<cgInstance name="cvg" 
+key="2" 
+excluded="false" 
+>
+<options weight="1" goal="100" comment="" at_least="1" auto_bin_max="10" detect_overlap="0" cross_num_print_missing="0" per_instance="false" />
+<cgId cgName="my_first_cvg" moduleName="default_scope">
+<cginstSourceId file="1" line="108" inlineCount="1"/>
+<cgSourceId file="1" line="88" inlineCount="1"/>
+</cgId>
+<coverpoint name="cvp1" key="3" exprString="value">
+<options weight="1" goal="100" comment="" at_least="1" auto_bin_max="10" detect_overlap="0" />
+<coverpointBin name="filled" 
+key="4" 
+type="default" >
+<range 
+from="1" 
+to ="1"
+>
+<contents coverageCount="1"></contents>
+</range>
+
+</coverpointBin>
+</coverpoint>
+
+<coverpoint name="cvp2" key="5" exprString="flags">
+<options weight="1" goal="100" comment="" at_least="1" auto_bin_max="10" detect_overlap="0" />
+<coverpointBin name="one" 
+key="6" 
+type="default" >
+<range 
+from="1" 
+to ="1"
+>
+<contents coverageCount="2"></contents>
+</range>
+
+</coverpointBin>
+</coverpoint>
+
+<cross name="" key="7" >
+<options weight="1" goal="100" comment="" at_least="1" cross_num_print_missing="0" />
+<crossExpr>cvp2</crossExpr> 
+<crossExpr>cvp1</crossExpr> 
+<crossBin 
+name=""  
+key="8" 
+> 
+<index>0</index>
+<index>0</index>
+<contents 
+coverageCount="1"> 
+</contents> 
+</crossBin> 
+</cross>
+
+
+</cgInstance>
+</covergroupCoverage>
+</instanceCoverages>
+</UCIS>

@@ -1,0 +1,23 @@
+--- 
++++ 
+@@ -25,6 +25,7 @@
+ 
+ #include "fc4sc.hpp"
+ #include "gtest/gtest.h"
++#include "xml_compare.h"
+ 
+ class cvp_get_bin_hit_count_test : public covergroup {
+ private:
+@@ -67,7 +68,10 @@
+   cvg.sample();
+   EXPECT_EQ(int32_t(cvg.cvp_example.get_bin_hit_count(0)), 3);
+ 
+-xml_printer::coverage_save("basic_bin_hit_" + std::string(::testing::UnitTest::GetInstance()->current_test_info()->name()) + ".xml",cntxt);
+-fc4sc::global::delete_context(cntxt);
++  std::string xml_name = "basic_bin_hit_" + std::string(::testing::UnitTest::GetInstance()->current_test_info()->name()) + ".xml";
++  xml_printer::coverage_save(xml_name, cntxt);
++  fc4sc::global::delete_context(cntxt);
++  bool xml_equal = xml_compare::compare("ref_files/"+xml_name, xml_name);
++  EXPECT_TRUE(xml_equal);
+ 
+ }
